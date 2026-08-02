@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../../images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../../images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../../images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="../../../../images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="../../../../css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhuang-weiming.github.io","root":"/","images":"../../../../images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"../../../../search.json","localsearch":{"enable":true,"top_n_per_article":2,"unescape":true,"preload":false}}</script><script src="../../../../js/config.js" defer></script>
+
+    <meta name="description" content="https:&#x2F;&#x2F;github.com&#x2F;HKUDS&#x2F;Vibe-Trading 实际使用体验。 🗂️ data-source（数据源）   技能名 用途 是否需 Key    data-routing 路由总入口——任何数据任务先加载这个 —   eastmoney 东财接口（A股资金流&#x2F;龙虎榜&#x2F;财务&#x2F;股东户数等） 否   tushare A股行情&#x2F;财务&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="体验Vibe-Trading">
+<meta property="og:url" content="https://zhuang-weiming.github.io/2026/07/13/%E4%BD%93%E9%AA%8CVibe-Trading/index.html">
+<meta property="og:site_name" content="Zhuang&#39;s Diary">
+<meta property="og:description" content="https:&#x2F;&#x2F;github.com&#x2F;HKUDS&#x2F;Vibe-Trading 实际使用体验。 🗂️ data-source（数据源）   技能名 用途 是否需 Key    data-routing 路由总入口——任何数据任务先加载这个 —   eastmoney 东财接口（A股资金流&#x2F;龙虎榜&#x2F;财务&#x2F;股东户数等） 否   tushare A股行情&#x2F;财务&amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-07-13T07:22:00.000Z">
+<meta property="article:modified_time" content="2026-07-13T07:24:16.190Z">
+<meta property="article:author" content="Zhuang Wei Ming">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AI-Trading">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Algorithm-trading">
+<meta property="article:tag" content="Finance">
+<meta property="article:tag" content="Finance-Banking">
+<meta property="article:tag" content="Finance-QuantTrading">
+<meta property="article:tag" content="Finance-WealthManagement">
+<meta property="article:tag" content="Fintech">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhuang-weiming.github.io/2026/07/13/%E4%BD%93%E9%AA%8CVibe-Trading/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhuang-weiming.github.io/2026/07/13/%E4%BD%93%E9%AA%8CVibe-Trading/","path":"2026/07/13/体验Vibe-Trading/","title":"体验Vibe-Trading"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>体验Vibe-Trading | Zhuang's Diary</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="../../../../js/utils.js" defer></script><script src="../../../../js/motion.js" defer></script><script src="../../../../js/sidebar.js" defer></script><script src="../../../../js/next-boot.js" defer></script><script src="../../../../js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="../../../../js/third-party/search/local-search.js" defer></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"../../../../lib/pdf/web/viewer.html"}</script>
+  <script src="../../../../js/third-party/tags/pdf.js" defer></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="../../../../js/third-party/tags/mermaid.js" defer></script>
+
+
+  <script src="../../../../js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="../../../../js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://zhuang-weiming.github.io/2026/07/13/%E4%BD%93%E9%AA%8CVibe-Trading/"}</script>
+  <script src="../../../../js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="../../../../css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zhuang's Diary</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">言之有物，持之以恒</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="../../../../index.html" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="../../../../tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">66</span></a></li><li class="menu-item menu-item-archives"><a href="../../../../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">310</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%97%82%EF%B8%8F-data-source%EF%BC%88%E6%95%B0%E6%8D%AE%E6%BA%90%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">🗂️ data-source（数据源）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%99%9F%EF%B8%8F-strategy%EF%BC%88%E7%AD%96%E7%95%A5%E6%A8%A1%E6%9D%BF%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">♟️ strategy（策略模板）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%93%8A-analysis%EF%BC%88%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">📊 analysis（分析框架）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8F%A6-asset-class%EF%BC%88%E8%B5%84%E4%BA%A7%E7%B1%BB%E5%88%AB%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">🏦 asset-class（资产类别）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E2%82%BF-crypto%EF%BC%88%E5%8A%A0%E5%AF%86%E4%B8%93%E9%A1%B9%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">₿ crypto（加密专项）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8C%8A-flow%EF%BC%88%E8%B5%84%E9%87%91%E6%B5%81%EF%BC%89"><span class="nav-number">6.</span> <span class="nav-text">🌊 flow（资金流）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9B%A0%EF%B8%8F-tool%EF%BC%88%E5%B7%A5%E5%85%B7%E5%9E%8B%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">🛠️ tool（工具型）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%94%AC-research%EF%BC%88%E7%A0%94%E7%A9%B6%E4%B8%93%E9%A1%B9%EF%BC%89"><span class="nav-number">8.</span> <span class="nav-text">🔬 research（研究专项）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9B%A1%EF%B8%8F-risk-analysis%EF%BC%88%E9%A3%8E%E9%99%A9%E4%B8%93%E9%A1%B9%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">🛡️ risk-analysis（风险专项）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8F%A6-XXXX%E9%93%B6%E8%A1%8C%E5%AE%A2%E6%88%B7%E6%9C%8D%E5%8A%A1-%C2%B7-%E6%8A%80%E8%83%BD%E7%9F%A9%E9%98%B5"><span class="nav-number">10.</span> <span class="nav-text">🏦 XXXX银行客户服务 · 技能矩阵</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%B8%8F%E2%83%A3-Wealth-Personal-Banking%EF%BC%88%E8%B4%A2%E5%AF%8C%E7%AE%A1%E7%90%86%E5%8F%8A%E4%B8%AA%E4%BA%BA%E9%93%B6%E8%A1%8C%EF%BC%89"><span class="nav-number">10.1.</span> <span class="nav-text">1️⃣ Wealth &amp; Personal Banking（财富管理及个人银行）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%B8%8F%E2%83%A3-Global-Private-Banking%EF%BC%88%E7%8E%AF%E7%90%83%E7%A7%81%E4%BA%BA%E9%93%B6%E8%A1%8C%EF%BC%89"><span class="nav-number">10.2.</span> <span class="nav-text">2️⃣ Global Private Banking（环球私人银行）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%B8%8F%E2%83%A3-Commercial-Banking%EF%BC%88%E5%B7%A5%E5%95%86%E9%87%91%E8%9E%8D%EF%BC%89-%E2%80%94-%E6%9C%8D%E5%8A%A1%E4%B8%AD%E5%B0%8F%E4%BC%81%E4%B8%9A-%E4%B8%8A%E5%B8%82%E5%85%AC%E5%8F%B8%E5%AE%A2%E6%88%B7"><span class="nav-number">10.3.</span> <span class="nav-text">3️⃣ Commercial Banking（工商金融） — 服务中小企业 &#x2F; 上市公司客户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4%EF%B8%8F%E2%83%A3-Global-Banking-Markets%EF%BC%88%E7%8E%AF%E7%90%83%E9%93%B6%E8%A1%8C%E5%8F%8A%E8%B5%84%E6%9C%AC%E5%B8%82%E5%9C%BA%EF%BC%89-%E2%80%94-%E6%9C%8D%E5%8A%A1%E6%9C%BA%E6%9E%84-%E8%87%AA%E8%90%A5-%E9%94%80%E5%94%AE%E4%BA%A4%E6%98%93"><span class="nav-number">10.4.</span> <span class="nav-text">4️⃣ Global Banking &amp; Markets（环球银行及资本市场） — 服务机构 &#x2F; 自营 &#x2F; 销售交易</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%EF%B8%8F%E2%83%A3-Asset-Management%EF%BC%88XXXX%E6%8A%95%E8%B5%84%E7%AE%A1%E7%90%86-%E8%B5%84%E7%AE%A1%EF%BC%89"><span class="nav-number">10.5.</span> <span class="nav-text">5️⃣ Asset Management（XXXX投资管理 &#x2F; 资管）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6%EF%B8%8F%E2%83%A3-%E5%85%A8%E6%9D%A1%E7%BA%BF%E5%85%B1%E7%94%A8%EF%BC%9A%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD%E7%B1%BB%E6%8A%80%E8%83%BD"><span class="nav-number">10.6.</span> <span class="nav-text">6️⃣ 全条线共用：基础设施类技能</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%8E%AF-%E7%BB%99XXXX-%E9%93%B6%E8%A1%8C%E7%9A%84%E3%80%8CTop-15%E3%80%8D%E6%A0%B8%E5%BF%83%E6%8A%80%E8%83%BD%E6%8E%A8%E8%8D%90"><span class="nav-number">11.</span> <span class="nav-text">🎯 给XXXX 银行的「Top 15」核心技能推荐</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%F0%9F%9A%80-%E6%88%91%E5%BB%BA%E8%AE%AE%E7%9A%84%E3%80%8C%E6%8C%89%E5%9C%BA%E6%99%AF%E3%80%8D%E7%BB%84%E5%90%88%E9%85%8D%E6%96%B9"><span class="nav-number">12.</span> <span class="nav-text">🚀 我建议的「按场景」组合配方</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E6%82%A8%E9%83%BD%E5%8F%AF%E4%BB%A5%E7%94%A8%E7%9A%84%E8%AF%B4%E8%AF%9D%E6%96%B9%E5%BC%8F"><span class="nav-number">13.</span> <span class="nav-text">三种您都可以用的说话方式</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhuang Wei Ming</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="../../../../archives/">
+          <span class="site-state-item-count">310</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="../../../../tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="../../../../zwm136200@gmail.com" title="E-Mail → zwm136200@gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhuang-weiming.github.io/2026/07/13/%E4%BD%93%E9%AA%8CVibe-Trading/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="../../../../images/avatar.gif">
+      <meta itemprop="name" content="Zhuang Wei Ming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhuang's Diary">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="体验Vibe-Trading | Zhuang's Diary">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          体验Vibe-Trading
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-07-13 15:22:00 / Modified: 15:24:16" itemprop="dateCreated datePublished" datetime="2026-07-13T15:22:00+08:00">2026-07-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://github.com/HKUDS/Vibe-Trading">https://github.com/HKUDS/Vibe-Trading</a> 实际使用体验。</p>
+<h2 id="🗂️-data-source（数据源）"><a href="#🗂️-data-source（数据源）" class="headerlink" title="🗂️ data-source（数据源）"></a>🗂️ data-source（数据源）</h2><table>
+<thead>
+<tr>
+<th>技能名</th>
+<th>用途</th>
+<th>是否需 Key</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>data-routing</td>
+<td><strong>路由总入口</strong>——任何数据任务先加载这个</td>
+<td>—</td>
+</tr>
+<tr>
+<td>eastmoney</td>
+<td>东财接口（A股资金流&#x2F;龙虎榜&#x2F;财务&#x2F;股东户数等）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>tushare</td>
+<td>A股行情&#x2F;财务&#x2F;基金（高质量，需 token）</td>
+<td>✅ TUSHARE_TOKEN</td>
+</tr>
+<tr>
+<td>akshare</td>
+<td>AKShare 聚合（18k+ stars，覆盖 A股&#x2F;美股&#x2F;港股&#x2F;期货&#x2F;宏观）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>mootdx</td>
+<td>通达信 TCP 直连（A 股 OHLCV 兜底）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>yfinance</td>
+<td>Yahoo Finance（美股&#x2F;港股 OHLCV + 公司资料）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>sec-edgar</td>
+<td>SEC EDGAR（10-K&#x2F;10-Q&#x2F;8-K + XBRL）</td>
+<td>否（IP 限速）</td>
+</tr>
+<tr>
+<td>okx-market</td>
+<td>OKX 加密行情（K线&#x2F;资金费率&#x2F;OI）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>ccxt</td>
+<td>CCXT 统一加密交易所库（100+ 交易所）</td>
+<td>否</td>
+</tr>
+<tr>
+<td>qveris</td>
+<td>付费多资产数据市场</td>
+<td>✅ QVERIS_API_KEY</td>
+</tr>
+</tbody></table>
+<h2 id="♟️-strategy（策略模板）"><a href="#♟️-strategy（策略模板）" class="headerlink" title="♟️ strategy（策略模板）"></a>♟️ strategy（策略模板）</h2><table>
+<thead>
+<tr>
+<th>技能名</th>
+<th>风格</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>strategy-generate</td>
+<td><strong>策略脚手架</strong>——任何新策略先读这个</td>
+<td>通用</td>
+</tr>
+<tr>
+<td>momentum</td>
+<td>动量</td>
+<td>趋势跟随</td>
+</tr>
+<tr>
+<td>ichimoku</td>
+<td>一目均衡表</td>
+<td>趋势 + 支撑阻力</td>
+</tr>
+<tr>
+<td>elliott-wave</td>
+<td>波浪理论</td>
+<td>5 浪推动 + 3 浪调整</td>
+</tr>
+<tr>
+<td>harmonic</td>
+<td>谐波形态（Gartley&#x2F;Bat&#x2F;Butterfly&#x2F;Crab）</td>
+<td>反转</td>
+</tr>
+<tr>
+<td>candlestick</td>
+<td>15 种 K 线形态</td>
+<td>反转信号</td>
+</tr>
+<tr>
+<td>chanlun</td>
+<td>缠论（分型&#x2F;笔&#x2F;中枢&#x2F;买卖点）</td>
+<td>多周期</td>
+</tr>
+<tr>
+<td>smc</td>
+<td>ICT 聪明钱（BOS&#x2F;ChoCH&#x2F;FVG&#x2F;OB）</td>
+<td>机构订单流</td>
+</tr>
+<tr>
+<td>pair-trading</td>
+<td>配对交易（Z-score）</td>
+<td>至少 2 个标的</td>
+</tr>
+<tr>
+<td>volatility</td>
+<td>HV 百分位均值回归</td>
+<td>波动率</td>
+</tr>
+<tr>
+<td>seasonal</td>
+<td>季节性&#x2F;日历效应</td>
+<td>时序模式</td>
+</tr>
+<tr>
+<td>technical-basic</td>
+<td>EMA&#x2F;ADX&#x2F;BB&#x2F;RSI&#x2F;OBV 三维投票</td>
+<td>通用入门</td>
+</tr>
+<tr>
+<td>multi-factor</td>
+<td>多因子打分 + TopN</td>
+<td>横截面</td>
+</tr>
+<tr>
+<td>cross-market-strategy</td>
+<td>跨市场组合策略</td>
+<td>A股+加密 等</td>
+</tr>
+<tr>
+<td>ml-strategy</td>
+<td>sklearn walk-forward</td>
+<td>任意 OHLCV</td>
+</tr>
+<tr>
+<td>event-driven</td>
+<td>事件驱动（新闻&#x2F;公告&#x2F;宏观情绪打分）</td>
+<td>NLP 信号</td>
+</tr>
+<tr>
+<td>execution-model</td>
+<td>滑点&#x2F;冲击成本&#x2F;VWAP&#x2F;TWAP</td>
+<td>回测建模</td>
+</tr>
+<tr>
+<td>bottleneck-hunter</td>
+<td>供应链瓶颈套利（AI&#x2F;能源&#x2F;国防&#x2F;半导体）</td>
+<td>主题投资</td>
+</tr>
+<tr>
+<td>thesis-tracker</td>
+<td>持仓 thesis 追踪（5 句 + 红线 + 季度复盘）</td>
+<td>投后管理</td>
+</tr>
+</tbody></table>
+<h2 id="📊-analysis（分析框架）"><a href="#📊-analysis（分析框架）" class="headerlink" title="📊 analysis（分析框架）"></a>📊 analysis（分析框架）</h2><table>
+<thead>
+<tr>
+<th>技能名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>factor-research</td>
+<td>因子 IC&#x2F;IR&#x2F;分层回测</td>
+</tr>
+<tr>
+<td>correlation-analysis</td>
+<td>相关性 + 协整（Engle-Granger&#x2F;Johansen&#x2F;Kalman）</td>
+</tr>
+<tr>
+<td>risk-analysis</td>
+<td>VaR&#x2F;CVaR&#x2F;Monte Carlo&#x2F;极值</td>
+</tr>
+<tr>
+<td>quant-statistics</td>
+<td>ADF&#x2F;GARCH&#x2F;异方差&#x2F;Bootstrap</td>
+</tr>
+<tr>
+<td>performance-attribution</td>
+<td>Brinson&#x2F;Fama-French&#x2F;择时归因</td>
+</tr>
+<tr>
+<td>market-microstructure</td>
+<td>买卖价差&#x2F;VPIN&#x2F;Kyle λ&#x2F;Amihud</td>
+</tr>
+<tr>
+<td>behavioral-finance</td>
+<td>行为金融（动量&#x2F;反转&#x2F;情绪&#x2F;认知偏差）</td>
+</tr>
+<tr>
+<td>sentiment-analysis</td>
+<td>恐贪&#x2F;P-C&#x2F;融资融券&#x2F;北向</td>
+</tr>
+<tr>
+<td>valuation-model</td>
+<td>DCF&#x2F;DDM&#x2F;SOTP&#x2F;PE-Band&#x2F;PB-ROE</td>
+</tr>
+<tr>
+<td>earnings-forecast</td>
+<td>SUE&#x2F;PEAD&#x2F;一致预期修正</td>
+</tr>
+<tr>
+<td>earnings-revision</td>
+<td>盈利预测调整 + 财报后漂移</td>
+</tr>
+<tr>
+<td>commodity-analysis</td>
+<td>原油&#x2F;黄金&#x2F;铜库存周期</td>
+</tr>
+<tr>
+<td>global-macro</td>
+<td>央行&#x2F;FX&#x2F;地缘&#x2F;跨境资本</td>
+</tr>
+<tr>
+<td>macro-analysis</td>
+<td>GDP&#x2F;CPI&#x2F;PMI&#x2F;利率周期定位</td>
+</tr>
+<tr>
+<td>sector-rotation</td>
+<td>申万行业景气 + 动量排名</td>
+</tr>
+<tr>
+<td>dividend-analysis</td>
+<td>分红可持续性 + 收益率陷阱</td>
+</tr>
+<tr>
+<td>financial-statement</td>
+<td>三表勾稽 + 杜邦 + 造假红旗</td>
+</tr>
+<tr>
+<td>fundamental-filter</td>
+<td>PE&#x2F;PB&#x2F;ROE 筛选</td>
+</tr>
+<tr>
+<td>credit-analysis</td>
+<td>信用债 + 可转债 + 城投</td>
+</tr>
+<tr>
+<td>management-deep-dive</td>
+<td>管理层三维评估（诚信&#x2F;能力&#x2F;治理）</td>
+</tr>
+<tr>
+<td>research-discipline</td>
+<td><strong>投研偏见清单</strong>——任何研究任务开始前先读</td>
+</tr>
+<tr>
+<td>deep-company-series</td>
+<td>单公司 8 篇系列深度（12 万字量级）</td>
+</tr>
+<tr>
+<td>private-company-research</td>
+<td>未上市公司 6 维尽调（蚂蚁&#x2F;SpaceX 等）</td>
+</tr>
+</tbody></table>
+<h2 id="🏦-asset-class（资产类别）"><a href="#🏦-asset-class（资产类别）" class="headerlink" title="🏦 asset-class（资产类别）"></a>🏦 asset-class（资产类别）</h2><table>
+<thead>
+<tr>
+<th>技能名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>asset-allocation</td>
+<td>MPT&#x2F;Black-Litterman&#x2F;风险预算&#x2F;全天候</td>
+</tr>
+<tr>
+<td>options-strategy</td>
+<td>期权策略框架 + 多腿回测</td>
+</tr>
+<tr>
+<td>options-payoff</td>
+<td>期权盈亏图 + 希腊字母</td>
+</tr>
+<tr>
+<td>options-advanced</td>
+<td>SABR&#x2F;Local Vol&#x2F;波动率套利</td>
+</tr>
+<tr>
+<td>hedging-strategy</td>
+<td>β 对冲 + 期权保护 + 跨资产</td>
+</tr>
+<tr>
+<td>convertible-bond</td>
+<td>A 股可转债三维估值 + 双低轮动</td>
+</tr>
+<tr>
+<td>etf-analysis</td>
+<td>ETF 筛选 + 费率 + 跟踪误差</td>
+</tr>
+<tr>
+<td>fund-analysis</td>
+<td>晨星评级 + Sharpe 风格箱 + FOF</td>
+</tr>
+</tbody></table>
+<h2 id="₿-crypto（加密专项）"><a href="#₿-crypto（加密专项）" class="headerlink" title="₿ crypto（加密专项）"></a>₿ crypto（加密专项）</h2><table>
+<thead>
+<tr>
+<th>技能名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>onchain-analysis</td>
+<td>活跃地址&#x2F;巨鲸&#x2F;TVL&#x2F;MVRV&#x2F;NVT&#x2F;SOPR</td>
+</tr>
+<tr>
+<td>perp-funding-basis</td>
+<td>永续费率 + 现金carry 基差</td>
+</tr>
+<tr>
+<td>crypto-derivatives</td>
+<td>永续套利 + 期限结构 + 波动率微笑</td>
+</tr>
+<tr>
+<td>defi-yield</td>
+<td>借贷&#x2F;LP&#x2F;质押收益率 + 协议可持续性</td>
+</tr>
+<tr>
+<td>stablecoin-flow</td>
+<td>USDT&#x2F;USDC 铸造销毁 + 储备</td>
+</tr>
+<tr>
+<td>liquidation-heatmap</td>
+<td>清算热力图 + 杠杆堆积</td>
+</tr>
+<tr>
+<td>token-unlock-treasury</td>
+<td>代币解锁 + 国库追踪</td>
+</tr>
+</tbody></table>
+<h2 id="🌊-flow（资金流）"><a href="#🌊-flow（资金流）" class="headerlink" title="🌊 flow（资金流）"></a>🌊 flow（资金流）</h2><table>
+<thead>
+<tr>
+<th>技能名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>hk-connect-flow</td>
+<td>北向&#x2F;南向 + 跨境套利</td>
+</tr>
+<tr>
+<td>us-etf-flow</td>
+<td>美股 ETF 创建赎回 + 风格轮动</td>
+</tr>
+<tr>
+<td>corporate-events</td>
+<td>并购&#x2F;增减持&#x2F;股权激励&#x2F;定增&#x2F;ST 预警</td>
+</tr>
+<tr>
+<td>edgar-sec-filings</td>
+<td>10-K&#x2F;10-Q&#x2F;8-K&#x2F;Form 4 解读</td>
+</tr>
+<tr>
+<td>adr-hshare</td>
+<td>ADR&#x2F;H 股&#x2F;A 股折溢价</td>
+</tr>
+</tbody></table>
+<h2 id="🛠️-tool（工具型）"><a href="#🛠️-tool（工具型）" class="headerlink" title="🛠️ tool（工具型）"></a>🛠️ tool（工具型）</h2><table>
+<thead>
+<tr>
+<th>技能名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>report-generate</td>
+<td>专业研究报告模板（结构&#x2F;评级&#x2F;术语）</td>
+</tr>
+<tr>
+<td>doc-reader</td>
+<td>PDF&#x2F;Word&#x2F;Excel&#x2F;PPT&#x2F;图片 OCR</td>
+</tr>
+<tr>
+<td>pine-script</td>
+<td>导出策略为 TradingView&#x2F;通达信&#x2F;同花顺代码</td>
+</tr>
+<tr>
+<td>vnpy-export</td>
+<td>导出为 vnpy CtaTemplate</td>
+</tr>
+<tr>
+<td>web-reader</td>
+<td>URL → Markdown</td>
+</tr>
+<tr>
+<td>trade-journal</td>
+<td><strong>交割单分析</strong>（同花顺&#x2F;东财&#x2F;富途格式）</td>
+</tr>
+<tr>
+<td>shadow-account</td>
+<td><strong>影子账户</strong>——从交割单提炼规则 + 多市场回测</td>
+</tr>
+<tr>
+<td>research-goal</td>
+<td>目标驱动研究工作流</td>
+</tr>
+<tr>
+<td>regulatory-knowledge</td>
+<td>A股涨跌停&#x2F;ST&#x2F;港股T+0&#x2F;美股PDT&#x2F;熔断</td>
+</tr>
+<tr>
+<td>social-media-intelligence</td>
+<td>Twitter&#x2F;Telegram&#x2F;Reddit 舆情信号</td>
+</tr>
+<tr>
+<td>geopolitical-risk</td>
+<td>地缘风险量化 + 事件驱动</td>
+</tr>
+</tbody></table>
+<h2 id="🔬-research（研究专项）"><a href="#🔬-research（研究专项）" class="headerlink" title="🔬 research（研究专项）"></a>🔬 research（研究专项）</h2><table>
+<thead>
+<tr>
+<th>技能名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>alpha-zoo</td>
+<td>Kakushadze 101 &#x2F; GTJA 191 &#x2F; Qlib 158 &#x2F; FF-Carhart</td>
+</tr>
+<tr>
+<td>strategy-dev-manager</td>
+<td>论文 → 因子&#x2F;策略 + 自动化回测 + 衰减监控</td>
+</tr>
+</tbody></table>
+<h2 id="🛡️-risk-analysis（风险专项）"><a href="#🛡️-risk-analysis（风险专项）" class="headerlink" title="🛡️ risk-analysis（风险专项）"></a>🛡️ risk-analysis（风险专项）</h2><table>
+<thead>
+<tr>
+<th>技能名</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ashare-pre-st-filter</td>
+<td>A 股 ST&#x2F;*ST 风险预测</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="🏦-XXXX银行客户服务-·-技能矩阵"><a href="#🏦-XXXX银行客户服务-·-技能矩阵" class="headerlink" title="🏦 XXXX银行客户服务 · 技能矩阵"></a>🏦 XXXX银行客户服务 · 技能矩阵</h2><p>我把XXXX的业务条线和您的技能池做了映射。每个条线下我按「客户需求 → 推荐技能 → 典型场景」组织，并给出一个<strong>优先级排序的 Top 技能清单</strong>，方便您快速选型。</p>
+<blockquote>
+<p>两条铁律：</p>
+<ul>
+<li><strong>任何研究开始前</strong> → 先 load_skill(“research-discipline”) 校准偏见</li>
+<li><strong>任何数据&#x2F;行情任务</strong> → 先 load_skill(“data-routing”) 路由数据源</li>
+</ul>
+</blockquote>
+<h3 id="1️⃣-Wealth-Personal-Banking（财富管理及个人银行）"><a href="#1️⃣-Wealth-Personal-Banking（财富管理及个人银行）" class="headerlink" title="1️⃣ Wealth &amp; Personal Banking（财富管理及个人银行）"></a>1️⃣ Wealth &amp; Personal Banking（财富管理及个人银行）</h3><p>服务对象：大众富裕（Mass Affluent）、中产、退休客户。</p>
+<table>
+<thead>
+<tr>
+<th>客户痛点</th>
+<th>推荐技能</th>
+<th>典型用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“帮我选几只股票 &#x2F; 基金”</td>
+<td>fundamental-filter · etf-analysis · fund-analysis</td>
+<td>PE&#x2F;PB&#x2F;ROE 筛选、ETF 费率&#x2F;跟踪误差比较、晨星风格箱</td>
+</tr>
+<tr>
+<td>“这只股票值不值得买 &#x2F; 多少钱合理”</td>
+<td>valuation-model · dividend-analysis</td>
+<td>DCF&#x2F;DDM&#x2F;PE-Band、股息可持续性、收益率陷阱</td>
+</tr>
+<tr>
+<td>“我的组合怎么调”</td>
+<td>asset-allocation</td>
+<td>MPT &#x2F; Black-Litterman &#x2F; 风险预算 &#x2F; 全天候</td>
+</tr>
+<tr>
+<td>“买点看财报、抢预期”</td>
+<td>earnings-forecast · earnings-revision</td>
+<td>SUE &#x2F; PEAD &#x2F; 一致预期修正</td>
+</tr>
+<tr>
+<td>“客户持仓出问题，要不要砍”</td>
+<td>thesis-tracker</td>
+<td>写 5 句 thesis + 红线 + 季度复盘</td>
+</tr>
+<tr>
+<td>出月度投顾月报</td>
+<td>report-generate</td>
+<td>标准化模板 + 评级体系</td>
+</tr>
+</tbody></table>
+<h3 id="2️⃣-Global-Private-Banking（环球私人银行）"><a href="#2️⃣-Global-Private-Banking（环球私人银行）" class="headerlink" title="2️⃣ Global Private Banking（环球私人银行）"></a>2️⃣ Global Private Banking（环球私人银行）</h3><p>服务对象：UHNW（≥100 万美元）、家族办公室、企业主。<strong>要”深度 + 稀缺信息 + 跨资产”</strong>。</p>
+<table>
+<thead>
+<tr>
+<th>客户痛点</th>
+<th>推荐技能</th>
+<th>典型用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“我想重仓一家公司，做尽调”</td>
+<td>deep-company-series · management-deep-dive</td>
+<td>8 篇 ~15 万字深度 + 管理层三维评估</td>
+</tr>
+<tr>
+<td>“错过 AI &#x2F; 能源转型 &#x2F; 国防，能找哪些二线标的”</td>
+<td>bottleneck-hunter</td>
+<td>供应链 Layer 2&#x2F;3 瓶颈 + 稀缺度评分</td>
+</tr>
+<tr>
+<td>“我想给小孩留点未上市股权”</td>
+<td>private-company-research</td>
+<td>蚂蚁&#x2F;SpaceX&#x2F;字节 6 维尽调 + 估值区间</td>
+</tr>
+<tr>
+<td>“对冲美股 &#x2F; 港股下行”</td>
+<td>hedging-strategy · options-strategy · options-payoff</td>
+<td>β 对冲 + 领口策略 + 损益图</td>
+</tr>
+<tr>
+<td>“想做点结构性产品 &#x2F; 雪球 &#x2F; FCB”</td>
+<td>options-advanced · convertible-bond</td>
+<td>SABR &#x2F; 局部波动率 &#x2F; 双低轮动</td>
+</tr>
+<tr>
+<td>“宏观怎么看，股票&#x2F;债券&#x2F;黄金怎么配”</td>
+<td>global-macro · macro-analysis · asset-allocation</td>
+<td>央行政策传导 + 周期定位</td>
+</tr>
+<tr>
+<td>“客户总在高点追，怎么劝”</td>
+<td>behavioral-finance · trade-journal · shadow-account</td>
+<td>行为诊断 + 交割单归因 + 影子账户</td>
+</tr>
+<tr>
+<td>“想配一点数字资产”</td>
+<td>crypto-derivatives · onchain-analysis · token-unlock-treasury</td>
+<td>永续套利 + MVRV&#x2F;SOPR + 解锁日历</td>
+</tr>
+<tr>
+<td>商品 &#x2F; 另类资产</td>
+<td>commodity-analysis · defi-yield</td>
+<td>油铜库存 + DeFi 收益可持续性</td>
+</tr>
+</tbody></table>
+<h3 id="3️⃣-Commercial-Banking（工商金融）-—-服务中小企业-上市公司客户"><a href="#3️⃣-Commercial-Banking（工商金融）-—-服务中小企业-上市公司客户" class="headerlink" title="3️⃣ Commercial Banking（工商金融） — 服务中小企业 &#x2F; 上市公司客户"></a>3️⃣ Commercial Banking（工商金融） — 服务中小企业 &#x2F; 上市公司客户</h3><table>
+<thead>
+<tr>
+<th>客户痛点</th>
+<th>推荐技能</th>
+<th>典型用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>“这家公司贷款 &#x2F; 授信值不值得给”</td>
+<td>credit-analysis · financial-statement</td>
+<td>信用债评级 + 城投 + 财务造假红旗 + 杜邦分解</td>
+</tr>
+<tr>
+<td>“客户要不要做并购”</td>
+<td>corporate-events · valuation-model</td>
+<td>并购套利 + SOTP 估值</td>
+</tr>
+<tr>
+<td>“上市公司 ST 风险预警”</td>
+<td>ashare-pre-st-filter</td>
+<td>营收&#x2F;净资产&#x2F;分红不达标预警</td>
+</tr>
+<tr>
+<td>“管理层靠不靠谱”</td>
+<td>management-deep-dive</td>
+<td>诚信&#x2F;能力&#x2F;治理三维 + 段永平三问</td>
+</tr>
+<tr>
+<td>“国别 &#x2F; 行业系统性风险”</td>
+<td>geopolitical-risk · sector-rotation</td>
+<td>地缘信号 + 申万景气度</td>
+</tr>
+</tbody></table>
+<h3 id="4️⃣-Global-Banking-Markets（环球银行及资本市场）-—-服务机构-自营-销售交易"><a href="#4️⃣-Global-Banking-Markets（环球银行及资本市场）-—-服务机构-自营-销售交易" class="headerlink" title="4️⃣ Global Banking &amp; Markets（环球银行及资本市场） — 服务机构 &#x2F; 自营 &#x2F; 销售交易"></a>4️⃣ Global Banking &amp; Markets（环球银行及资本市场） — 服务机构 &#x2F; 自营 &#x2F; 销售交易</h3><table>
+<thead>
+<tr>
+<th>工作场景</th>
+<th>推荐技能</th>
+<th>典型用法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>卖方研究 &#x2F; 投资观点</td>
+<td>report-generate · earnings-revision · factor-research</td>
+<td>报告模板 + 预期修正 + 因子横截面</td>
+</tr>
+<tr>
+<td>量化研究 &#x2F; 因子挖掘</td>
+<td>alpha-zoo · strategy-generate · multi-factor · ml-strategy · strategy-dev-manager</td>
+<td>Kakushadze 101 &#x2F; GTJA 191 &#x2F; 因子打分 &#x2F; walk-forward</td>
+</tr>
+<tr>
+<td>策略回测</td>
+<td>backtest 流程 + 17 个策略模板（momentum ichimoku elliott-wave harmoniccandlestick chanlun smc pair-trading volatility seasonal technical-basiccross-market-strategy event-driven 等） + execution-model</td>
+<td>滑点&#x2F;VWAP&#x2F;TWAP 建模</td>
+</tr>
+<tr>
+<td>跨资产 &#x2F; 跨市场套利</td>
+<td>cross-market-strategy · adr-hshare · hk-connect-flow · us-etf-flow · correlation-analysis</td>
+<td>沪深港通资金 + ADR 折溢价 + ETF 申赎</td>
+</tr>
+<tr>
+<td>衍生品 &#x2F; 做市</td>
+<td>options-advanced · crypto-derivatives · perp-funding-basis · liquidation-heatmap· market-microstructure</td>
+<td>SABR + 资金费率套利 + 清算热力图 + 订单流毒性</td>
+</tr>
+<tr>
+<td>风控</td>
+<td>risk-analysis · quant-statistics · performance-attribution</td>
+<td>VaR&#x2F;CVaR&#x2F;MC + ADF&#x2F;GARCH + Brinson&#x2F;FF 归因</td>
+</tr>
+<tr>
+<td>情绪&#x2F;舆情短线</td>
+<td>sentiment-analysis · social-media-intelligence · event-driven</td>
+<td>恐贪&#x2F;P-C&#x2F;融资融券&#x2F;北向 + 推特电报舆情</td>
+</tr>
+<tr>
+<td>合规</td>
+<td>regulatory-knowledge · geopolitical-risk</td>
+<td>涨跌停&#x2F;ST&#x2F;PDT&#x2F;熔断&#x2F;跨境税务</td>
+</tr>
+</tbody></table>
+<h3 id="5️⃣-Asset-Management（XXXX投资管理-资管）"><a href="#5️⃣-Asset-Management（XXXX投资管理-资管）" class="headerlink" title="5️⃣ Asset Management（XXXX投资管理 &#x2F; 资管）"></a>5️⃣ Asset Management（XXXX投资管理 &#x2F; 资管）</h3><table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐技能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>投研框架搭建</td>
+<td>research-discipline → <br>factor-research → <br>alpha-zoo</td>
+</tr>
+<tr>
+<td>业绩归因</td>
+<td>performance-attribution（Brinson &#x2F; Fama-French &#x2F; 择时）</td>
+</tr>
+<tr>
+<td>组合风险监控</td>
+<td>risk-analysis + correlation-analysis + sdm_decay_scan</td>
+</tr>
+<tr>
+<td>客户月报</td>
+<td>report-generate</td>
+</tr>
+</tbody></table>
+<h3 id="6️⃣-全条线共用：基础设施类技能"><a href="#6️⃣-全条线共用：基础设施类技能" class="headerlink" title="6️⃣ 全条线共用：基础设施类技能"></a>6️⃣ 全条线共用：基础设施类技能</h3><table>
+<thead>
+<tr>
+<th>技能</th>
+<th>用途</th>
+<th>调用时机</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>data-routing</td>
+<td>数据源路由 + 鉴权 + 限速策略</td>
+<td><strong>每次</strong>数据&#x2F;行情任务前</td>
+</tr>
+<tr>
+<td>research-discipline</td>
+<td>校准 leader&#x2F;English&#x2F;narrative&#x2F;confirmation&#x2F;recency 5 大偏见</td>
+<td><strong>每次</strong>研究任务前</td>
+</tr>
+<tr>
+<td>doc-reader · web-reader</td>
+<td>读 PDF&#x2F;Word&#x2F;Excel + URL 转 Markdown</td>
+<td>读招股书&#x2F;年报&#x2F;研报&#x2F;新闻</td>
+</tr>
+<tr>
+<td>report-generate</td>
+<td>投行级报告模板</td>
+<td>任何对外交付物</td>
+</tr>
+<tr>
+<td>regulatory-knowledge</td>
+<td>A股&#x2F;港股&#x2F;美股&#x2F;加密监管 + 跨境税务</td>
+<td>任何合规&#x2F;产品设计问题</td>
+</tr>
+</tbody></table>
+<h2 id="🎯-给XXXX-银行的「Top-15」核心技能推荐"><a href="#🎯-给XXXX-银行的「Top-15」核心技能推荐" class="headerlink" title="🎯 给XXXX 银行的「Top 15」核心技能推荐"></a>🎯 给XXXX 银行的「Top 15」核心技能推荐</h2><p>按”覆盖面 + 使用频次”排序。先装备这 15 个，可解决 80% 日常客户问题：</p>
+<table>
+<thead>
+<tr>
+<th>排名</th>
+<th>技能</th>
+<th>一句话定位</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>asset-allocation</td>
+<td>投顾业务的”地基”——任何资产配置问题先调它</td>
+</tr>
+<tr>
+<td>2</td>
+<td>valuation-model</td>
+<td>估值万能工具——DCF&#x2F;DDM&#x2F;SOTP&#x2F;PE-Band&#x2F;PB-ROE</td>
+</tr>
+<tr>
+<td>3</td>
+<td>fundamental-filter</td>
+<td>股票&#x2F;基金筛选——最常用入口</td>
+</tr>
+<tr>
+<td>4</td>
+<td>report-generate</td>
+<td>投顾月报模板——所有条线通用</td>
+</tr>
+<tr>
+<td>5</td>
+<td>research-discipline</td>
+<td>研究偏见校准——质量保证</td>
+</tr>
+<tr>
+<td>6</td>
+<td>data-routing</td>
+<td>数据路由——质量与合规保障</td>
+</tr>
+<tr>
+<td>7</td>
+<td>macro-analysis + global-macro</td>
+<td>宏观周期定位——季度资产配置主驱动</td>
+</tr>
+<tr>
+<td>8</td>
+<td>thesis-tracker</td>
+<td>投后管理——客户持仓复盘必备</td>
+</tr>
+<tr>
+<td>9</td>
+<td>behavioral-finance</td>
+<td>客户行为教练——高净值客户留存</td>
+</tr>
+<tr>
+<td>10</td>
+<td>hedging-strategy + options-strategy</td>
+<td>对冲与结构性产品——私人银行核心</td>
+</tr>
+<tr>
+<td>11</td>
+<td>risk-analysis</td>
+<td>VaR&#x2F;CVaR&#x2F;MC——所有条线风控必备</td>
+</tr>
+<tr>
+<td>12</td>
+<td>deep-company-series</td>
+<td>8 篇深度尽调——私人银行差异化服务</td>
+</tr>
+<tr>
+<td>13</td>
+<td>bottleneck-hunter</td>
+<td>主题投资挖宝——AI&#x2F;能源&#x2F;国防热点</td>
+</tr>
+<tr>
+<td>14</td>
+<td>management-deep-dive</td>
+<td>管理层三维评估——避免踩雷</td>
+</tr>
+<tr>
+<td>15</td>
+<td>corporate-events</td>
+<td>事件驱动——并购&#x2F;增减持&#x2F;股权激励</td>
+</tr>
+</tbody></table>
+<h2 id="🚀-我建议的「按场景」组合配方"><a href="#🚀-我建议的「按场景」组合配方" class="headerlink" title="🚀 我建议的「按场景」组合配方"></a>🚀 我建议的「按场景」组合配方</h2><p>如果您能告诉我<strong>具体客户类型 &#x2F; 服务场景</strong>，我可以立刻给出<strong>精确到工具调用顺序</strong>的 SOP。常见三种：</p>
+<table>
+<thead>
+<tr>
+<th>场景</th>
+<th>推荐 SOP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A. 客户拿一只股票来问”该不该买”</td>
+<td>research-discipline → <br>get_stock_profile &#x2F; get_financial_statements → <br>valuation-model → <br>management-deep-dive → <br>thesis-tracker（写入库）→ <br>report-generate（出报告）</td>
+</tr>
+<tr>
+<td>B. 季度资产配置提案</td>
+<td>macro-analysis + global-macro → <br>asset-allocation → <br>sector-rotation → <br>hedging-strategy（对冲层）→ <br>report-generate</td>
+</tr>
+<tr>
+<td>C. 客户想做一笔跨境并购融资</td>
+<td>research-discipline → <br>fundamental-filter + financial-statement（标的三表）→ <br>valuation-model（SOTP）→ <br>corporate-events（并购条款）→ <br>credit-analysis（融资结构）→ <br>geopolitical-risk（国别）→ <br>regulatory-knowledge（合规）</td>
+</tr>
+</tbody></table>
+<h2 id="三种您都可以用的说话方式"><a href="#三种您都可以用的说话方式" class="headerlink" title="三种您都可以用的说话方式"></a>三种您都可以用的说话方式</h2><p><strong>方式 ① — 最省心：纯描述问题</strong></p>
+<blockquote>
+<p>“我有个客户 800 万港币，45 岁，风险承受中等，想在年底前做个配置，怎么做？”</p>
+</blockquote>
+<p>我听到 → 自动加载 <code>research-discipline</code> → <code>macro-analysis</code> → <code>asset-allocation</code> → <code>hedging-strategy</code> → 跑流程 → 给您配置方案。</p>
+<p><strong>方式 ② — 半指引：点名某个技能</strong></p>
+<blockquote>
+<p>“用 asset-allocation 给我出一版高净值客户的全天候配置。”</p>
+</blockquote>
+<p>我听到 → <strong>优先</strong>加载 <code>asset-allocation</code> 技能文档 → 按它定义的方法论做。</p>
+<p><strong>方式 ③ — 多步工作流（您前面看到的 SOP 那种）</strong></p>
+<blockquote>
+<p>“按你之前说的 A 场景 SOP，给 600519.SH 出一个完整评估。”</p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Zhuang Wei Ming
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://zhuang-weiming.github.io/2026/07/13/%E4%BD%93%E9%AA%8CVibe-Trading/" title="体验Vibe-Trading">https://zhuang-weiming.github.io/2026/07/13/体验Vibe-Trading/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="../../../../tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="../../../../tags/AI/" rel="tag"># AI</a>
+              <a href="../../../../tags/Finance/" rel="tag"># Finance</a>
+              <a href="../../../../tags/Finance-Banking/" rel="tag"># Finance-Banking</a>
+              <a href="../../../../tags/Finance-WealthManagement/" rel="tag"># Finance-WealthManagement</a>
+              <a href="../../../../tags/Finance-QuantTrading/" rel="tag"># Finance-QuantTrading</a>
+              <a href="../../../../tags/AI-Trading/" rel="tag"># AI-Trading</a>
+              <a href="../../../../tags/Algorithm-trading/" rel="tag"># Algorithm-trading</a>
+              <a href="../../../../tags/Fintech/" rel="tag"># Fintech</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="../../09/V21%20%E9%98%BF%E5%B0%94%E6%B3%95%E5%BC%95%E6%93%8E%20vs%20WIF%20v5.9%20%E8%B4%9D%E5%A1%94%E6%A1%86%E6%9E%B6%EF%BC%9A%E4%B8%96%E7%95%8C%E8%A7%82%E4%B8%8E%E6%96%B9%E6%B3%95%E8%AE%BA/" rel="prev" title="V21 阿尔法引擎 vs WIF v5.9 贝塔框架：世界观与方法论">
+                  <i class="fa fa-angle-left"></i> V21 阿尔法引擎 vs WIF v5.9 贝塔框架：世界观与方法论
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="../WIF%20v5.9%20%E8%B4%A2%E5%AF%8C%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A/" rel="next" title="体验Vibe-Trading">
+                  体验Vibe-Trading <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Zhuang Wei Ming</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhuang-weiming/zhuang-weiming.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="../../../../js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

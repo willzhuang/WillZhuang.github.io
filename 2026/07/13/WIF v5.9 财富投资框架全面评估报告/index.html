@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../../images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../../images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../../images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="../../../../images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="../../../../css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhuang-weiming.github.io","root":"/","images":"../../../../images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"../../../../search.json","localsearch":{"enable":true,"top_n_per_article":2,"unescape":true,"preload":false}}</script><script src="../../../../js/config.js" defer></script>
+
+    <meta name="description" content="WIF v5.9 财富投资框架全面评估报告评估依据：5 个一手文件（设计文档、回测代码、HTML 报告、NAV 日线 4888 个、交易日志 14 笔），回测区间 2007-01-03 至 2026-06-08，本金，XXXX 渠道含摩擦。 一、核心投资哲学与设计理念   # 信念 实现机制    1 长期持有是主要收益来源，主动择时为辅不为主 方案C：只在三触发时才动作   2 风险事件可识别但">
+<meta property="og:type" content="article">
+<meta property="og:title" content="体验Vibe-Trading">
+<meta property="og:url" content="https://zhuang-weiming.github.io/2026/07/13/WIF%20v5.9%20%E8%B4%A2%E5%AF%8C%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A/index.html">
+<meta property="og:site_name" content="Zhuang&#39;s Diary">
+<meta property="og:description" content="WIF v5.9 财富投资框架全面评估报告评估依据：5 个一手文件（设计文档、回测代码、HTML 报告、NAV 日线 4888 个、交易日志 14 笔），回测区间 2007-01-03 至 2026-06-08，本金，XXXX 渠道含摩擦。 一、核心投资哲学与设计理念   # 信念 实现机制    1 长期持有是主要收益来源，主动择时为辅不为主 方案C：只在三触发时才动作   2 风险事件可识别但">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-07-13T08:40:00.000Z">
+<meta property="article:modified_time" content="2026-07-13T08:40:41.883Z">
+<meta property="article:author" content="Zhuang Wei Ming">
+<meta property="article:tag" content="AI">
+<meta property="article:tag" content="AI-Trading">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Algorithm-trading">
+<meta property="article:tag" content="Finance">
+<meta property="article:tag" content="Finance-Banking">
+<meta property="article:tag" content="Finance-QuantTrading">
+<meta property="article:tag" content="Finance-WealthManagement">
+<meta property="article:tag" content="Fintech">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhuang-weiming.github.io/2026/07/13/WIF%20v5.9%20%E8%B4%A2%E5%AF%8C%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhuang-weiming.github.io/2026/07/13/WIF%20v5.9%20%E8%B4%A2%E5%AF%8C%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A/","path":"2026/07/13/WIF v5.9 财富投资框架全面评估报告/","title":"体验Vibe-Trading"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>体验Vibe-Trading | Zhuang's Diary</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="../../../../js/utils.js" defer></script><script src="../../../../js/motion.js" defer></script><script src="../../../../js/sidebar.js" defer></script><script src="../../../../js/next-boot.js" defer></script><script src="../../../../js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="../../../../js/third-party/search/local-search.js" defer></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"../../../../lib/pdf/web/viewer.html"}</script>
+  <script src="../../../../js/third-party/tags/pdf.js" defer></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="../../../../js/third-party/tags/mermaid.js" defer></script>
+
+
+  <script src="../../../../js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="../../../../js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://zhuang-weiming.github.io/2026/07/13/WIF%20v5.9%20%E8%B4%A2%E5%AF%8C%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A/"}</script>
+  <script src="../../../../js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="../../../../css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zhuang's Diary</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">言之有物，持之以恒</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="../../../../index.html" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="../../../../tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">66</span></a></li><li class="menu-item menu-item-archives"><a href="../../../../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">310</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WIF-v5-9-%E8%B4%A2%E5%AF%8C%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A"><span class="nav-number">1.</span> <span class="nav-text">WIF v5.9 财富投资框架全面评估报告</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E6%A0%B8%E5%BF%83%E6%8A%95%E8%B5%84%E5%93%B2%E5%AD%A6%E4%B8%8E%E8%AE%BE%E8%AE%A1%E7%90%86%E5%BF%B5"><span class="nav-number">1.1.</span> <span class="nav-text">一、核心投资哲学与设计理念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E5%85%B3%E9%94%AE%E5%85%AC%E5%BC%8F%E4%B8%8E%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%EF%BC%88%E5%B7%B2%E5%9C%A8%E4%BB%A3%E7%A0%81%E9%87%8C%E9%80%90%E8%A1%8C%E6%A0%B8%E5%AE%9E%EF%BC%89"><span class="nav-number">1.2.</span> <span class="nav-text">二、关键公式与算法实现（已在代码里逐行核实）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E5%9B%9E%E6%B5%8B%E7%9C%9F%E5%AE%9E%E8%A1%A8%E7%8E%B0%EF%BC%884888-%E4%BA%A4%E6%98%93%E6%97%A5-%E2%89%88-19-2-%E5%B9%B4%EF%BC%89"><span class="nav-number">1.3.</span> <span class="nav-text">三、回测真实表现（4888 交易日 ≈ 19.2 年）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E9%A3%8E%E6%8E%A7%E6%9C%BA%E5%88%B6%EF%BC%886-%E5%B1%82%E5%8F%A0%E5%8A%A0-4-%E9%A1%B9%E5%B7%B2%E7%9F%A5%E7%BC%BA%E5%8F%A3%EF%BC%89"><span class="nav-number">1.4.</span> <span class="nav-text">四、风控机制（6 层叠加 + 4 项已知缺口）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E4%BC%98%E7%BC%BA%E7%82%B9-%E6%BD%9C%E5%9C%A8%E9%A3%8E%E9%99%A9"><span class="nav-number">1.5.</span> <span class="nav-text">五、优缺点 &#x2F; 潜在风险</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E9%80%82%E5%90%88%E4%BA%BA%E7%BE%A4-%E4%B8%8D%E9%80%82%E5%90%88%E4%BA%BA%E7%BE%A4"><span class="nav-number">1.6.</span> <span class="nav-text">六、适合人群 &#x2F; 不适合人群</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%83%E3%80%81%E5%8F%AF%E6%93%8D%E4%BD%9C%E7%9A%84%E6%94%B9%E8%BF%9B%E5%BB%BA%E8%AE%AE%EF%BC%88%E6%8C%89%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%89"><span class="nav-number">1.7.</span> <span class="nav-text">七、可操作的改进建议（按优先级）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E7%BB%88%E6%9E%81%E5%88%A4%E6%96%AD%EF%BC%88%E4%B8%80%E5%8F%A5%E8%AF%9D%EF%BC%89"><span class="nav-number">1.8.</span> <span class="nav-text">八、终极判断（一句话）</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhuang Wei Ming</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="../../../../archives/">
+          <span class="site-state-item-count">310</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="../../../../tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="../../../../zwm136200@gmail.com" title="E-Mail → zwm136200@gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhuang-weiming.github.io/2026/07/13/WIF%20v5.9%20%E8%B4%A2%E5%AF%8C%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="../../../../images/avatar.gif">
+      <meta itemprop="name" content="Zhuang Wei Ming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhuang's Diary">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="体验Vibe-Trading | Zhuang's Diary">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          体验Vibe-Trading
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-07-13 16:40:00 / Modified: 16:40:41" itemprop="dateCreated datePublished" datetime="2026-07-13T16:40:00+08:00">2026-07-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="WIF-v5-9-财富投资框架全面评估报告"><a href="#WIF-v5-9-财富投资框架全面评估报告" class="headerlink" title="WIF v5.9 财富投资框架全面评估报告"></a>WIF v5.9 财富投资框架全面评估报告</h1><p>评估依据：5 个一手文件（设计文档、回测代码、HTML 报告、NAV 日线 4888 个、交易日志 14 笔），回测区间 2007-01-03 至 2026-06-08，本金，XXXX 渠道含摩擦。</p>
+<h2 id="一、核心投资哲学与设计理念"><a href="#一、核心投资哲学与设计理念" class="headerlink" title="一、核心投资哲学与设计理念"></a>一、核心投资哲学与设计理念</h2><table>
+<thead>
+<tr>
+<th>#</th>
+<th>信念</th>
+<th>实现机制</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>长期持有是主要收益来源，主动择时为辅不为主</td>
+<td>方案C：只在三触发时才动作</td>
+</tr>
+<tr>
+<td>2</td>
+<td>风险事件可识别但不可预测方向</td>
+<td>三道风控闸门（F33b + CSI + 状态机）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>黑天鹅防御优先于收益捕获</td>
+<td>独立安全气囊 F33b override</td>
+</tr>
+<tr>
+<td>4</td>
+<td>持续压力检测 &gt; 短期方向预测</td>
+<td>CSI 复合压力指数（连续值）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>换手本身就是收益的敌人</td>
+<td>把可能上千次&#x2F;年的调仓压到 14 次&#x2F;19 年</td>
+</tr>
+<tr>
+<td>6</td>
+<td>滞胀周期需独立防御</td>
+<td>Q3 滞胀环境降低风险敞口</td>
+</tr>
+</tbody></table>
+<h2 id="二、关键公式与算法实现（已在代码里逐行核实）"><a href="#二、关键公式与算法实现（已在代码里逐行核实）" class="headerlink" title="二、关键公式与算法实现（已在代码里逐行核实）"></a>二、关键公式与算法实现（已在代码里逐行核实）</h2><table>
+<thead>
+<tr>
+<th>ID</th>
+<th>公式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>F29</td>
+<td>VTI&#x2F;QQQ vs BND&#x2F;AGG&#x2F;IEF&#x2F;TLT 6 月滚动相关性</td>
+<td>股债跷跷板是否失效</td>
+</tr>
+<tr>
+<td>VIXTERM</td>
+<td>VIX − VIX3M</td>
+<td>期限结构倒挂 → 远期恐惧</td>
+</tr>
+<tr>
+<td>相关性崩塌</td>
+<td>VTI&#x2F;QQQ&#x2F;AGG 5 日相关性突增</td>
+<td>分散失效预警</td>
+</tr>
+<tr>
+<td><strong>CSI</strong></td>
+<td><code>0.45·Z(F29) + 0.35·Z(VIXTERM) + 0.20·Z(相关性崩塌)</code></td>
+<td>复合压力连续值</td>
+</tr>
+<tr>
+<td>E04</td>
+<td><code>(close_t / close_{t-252}) − 1</code></td>
+<td>12 月动量过滤</td>
+</tr>
+<tr>
+<td>F33b</td>
+<td><code>VIX &gt; 40 AND 10 日涨幅 &gt; 100%</code> → 强制 EMERGENCY</td>
+<td>黑天鹅独立开关</td>
+</tr>
+<tr>
+<td>状态机</td>
+<td>EMERGENCY(&gt;2.0) &#x2F; WARNING(1.0–2.0) &#x2F; HEALTHY(&lt;1.0 连 5 日)</td>
+<td>三态切换</td>
+</tr>
+<tr>
+<td>触发器</td>
+<td>因子切换 OR 状态切换 OR 新品类首次建仓</td>
+<td>方案C</td>
+</tr>
+<tr>
+<td>仓位上限</td>
+<td>股票 ≤80% &#x2F; 债券 ≤80% &#x2F; 商品 ≤40%</td>
+<td>集中度硬约束</td>
+</tr>
+<tr>
+<td>渠道成本</td>
+<td>股票 3% 初始 + 3% 追加；债券 2%&#x2F;3%；商品 2%&#x2F;3%</td>
+<td>HSBC 真实摩擦</td>
+</tr>
+</tbody></table>
+<h2 id="三、回测真实表现（4888-交易日-≈-19-2-年）"><a href="#三、回测真实表现（4888-交易日-≈-19-2-年）" class="headerlink" title="三、回测真实表现（4888 交易日 ≈ 19.2 年）"></a>三、回测真实表现（4888 交易日 ≈ 19.2 年）</h2><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>v5.9 有摩擦</th>
+<th>v5.9 无摩擦</th>
+<th>SPY</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>累计收益</td>
+<td><strong>+978.2%</strong></td>
+<td>+1059.5%</td>
+<td>+646.2%</td>
+</tr>
+<tr>
+<td>年化收益</td>
+<td><strong>12.84%</strong></td>
+<td>13.21%</td>
+<td>12.29%</td>
+</tr>
+<tr>
+<td>年化波动率</td>
+<td><strong>10.78%</strong></td>
+<td>10.75%</td>
+<td>19.64%</td>
+</tr>
+<tr>
+<td>夏普比率</td>
+<td><strong>1.19</strong></td>
+<td>1.23</td>
+<td>0.63</td>
+</tr>
+<tr>
+<td>最大回撤</td>
+<td><strong>−23.0%</strong></td>
+<td>−21.8%</td>
+<td>−55.2%</td>
+</tr>
+<tr>
+<td>vs SPY</td>
+<td><strong>1.51x</strong></td>
+<td>—</td>
+<td>1.00</td>
+</tr>
+<tr>
+<td>调仓次数</td>
+<td><strong>14 次</strong></td>
+<td>14 次</td>
+<td>—</td>
+</tr>
+<tr>
+<td>累计成本</td>
+<td><strong>$265,976</strong>（占本金 5.5%）</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody></table>
+<p><strong>核心判断</strong>：</p>
+<ul>
+<li>Calmar &#x3D; 12.84 &#x2F; 23.0 &#x3D; <strong>0.56</strong>，是 SPY 0.22 的 <strong>2.5 倍</strong> — <strong>真正的可卖差异点</strong>。</li>
+<li>Sharpe 1.19 vs SPY 0.63 &#x3D; <strong>几乎翻倍</strong> — 风险调整后质量是结构性优势。</li>
+<li>14 次&#x2F;19 年 &#x3D; 平均每次决策承担 <strong>6.2 年</strong>的市场演变 — 这是”几乎被动”的低频策略，<strong>不是择时策略</strong>。</li>
+</ul>
+<h2 id="四、风控机制（6-层叠加-4-项已知缺口）"><a href="#四、风控机制（6-层叠加-4-项已知缺口）" class="headerlink" title="四、风控机制（6 层叠加 + 4 项已知缺口）"></a>四、风控机制（6 层叠加 + 4 项已知缺口）</h2><table>
+<thead>
+<tr>
+<th>层</th>
+<th>机制</th>
+<th>验证</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>L1</td>
+<td>CSI 复合压力指数</td>
+<td>多周期触发</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>F33b 黑天鹅 override</td>
+<td>2008 &#x2F; 2020 &#x2F; 2024 危机瞬间拉闸</td>
+</tr>
+<tr>
+<td>L3</td>
+<td>HEALTHY→WARNING→EMERGENCY 状态机</td>
+<td>把 14 次调仓压在 19 年</td>
+</tr>
+<tr>
+<td>L4</td>
+<td>品类 ≤80&#x2F;80&#x2F;40%</td>
+<td>硬约束</td>
+</tr>
+<tr>
+<td>L5</td>
+<td>QQQ↔SQQQ 配对（&gt;15% 触发）</td>
+<td>单标的对冲</td>
+</tr>
+<tr>
+<td>L6</td>
+<td>周日定投 + 周一加仓</td>
+<td>平滑波动</td>
+</tr>
+</tbody></table>
+<p><strong>已知缺口</strong>：correlation_breakout_warning、流动性压力测试、利率冲击测试、单标的高波动日应对（2020-03-16 的 −12% 是否有覆盖未明）。</p>
+<h2 id="五、优缺点-潜在风险"><a href="#五、优缺点-潜在风险" class="headerlink" title="五、优缺点 &#x2F; 潜在风险"></a>五、优缺点 &#x2F; 潜在风险</h2><table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点 &#x2F; 风险</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>✅ 极低频 + 高夏普（1.19 vs SPY 0.63）</td>
+<td>⚠️ 14 次样本统计不足，置信区间宽</td>
+</tr>
+<tr>
+<td>✅ 回撤压制 -23% vs SPY -55%</td>
+<td>⚠️ 2022 股债齐跌时框架可能同压</td>
+</tr>
+<tr>
+<td>✅ 因子池无存活者偏差</td>
+<td>⚠️ HSBC T+7 + 起步门槛 → 急跌时赎回滞后</td>
+</tr>
+<tr>
+<td>✅ 三因子可解释、可观测、非黑箱</td>
+<td>⚠️ Q3 滞胀 ≤30% 阈值无 walk-forward</td>
+</tr>
+<tr>
+<td>✅ F33b + CSI + 状态机三层叠加</td>
+<td>⚠️ 周末&#x2F;触发窗口外信号被方案C吞掉</td>
+</tr>
+<tr>
+<td>✅ 方案C 解决过度交易</td>
+<td>⚠️ 回测起点 2007（错过 2000-02 dot-com）</td>
+</tr>
+<tr>
+<td>—</td>
+<td>⚠️ 信号价 vs 成交价滑点模型未完整</td>
+</tr>
+</tbody></table>
+<h2 id="六、适合人群-不适合人群"><a href="#六、适合人群-不适合人群" class="headerlink" title="六、适合人群 &#x2F; 不适合人群"></a>六、适合人群 &#x2F; 不适合人群</h2><table>
+<thead>
+<tr>
+<th>人群</th>
+<th>适合度</th>
+<th>理由</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>中长期投资者（≥50 万 RMB，本金门槛）</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>几乎不打扰生活</td>
+</tr>
+<tr>
+<td>退休 &#x2F; 风险厌恶型</td>
+<td>⭐⭐⭐⭐</td>
+<td>-23% &lt; 30% 心理线</td>
+</tr>
+<tr>
+<td>量化顾问下的客户资金</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>合规友好（年化 14 次交易）</td>
+</tr>
+<tr>
+<td>机构&#x2F;退休金长线仓位</td>
+<td>⭐⭐⭐⭐</td>
+<td>回撤压得住、费用低</td>
+</tr>
+<tr>
+<td>HSBC &#x2F; 中港两地客户</td>
+<td>⭐⭐⭐⭐</td>
+<td>渠道就是设计的一部分</td>
+</tr>
+<tr>
+<td>短线 &#x2F; 日内</td>
+<td>❌</td>
+<td>完全错位</td>
+</tr>
+<tr>
+<td>想要年化 20%+ 的进取者</td>
+<td>⭐⭐</td>
+<td>12.84% 不够看</td>
+</tr>
+</tbody></table>
+<h2 id="七、可操作的改进建议（按优先级）"><a href="#七、可操作的改进建议（按优先级）" class="headerlink" title="七、可操作的改进建议（按优先级）"></a>七、可操作的改进建议（按优先级）</h2><p><strong>P0（立即）</strong>：</p>
+<ol>
+<li>加 LPPLS &#x2F; 泡沫指标（5–10% 权重进 CSI） — 现在对逐渐泡沫破裂弱。</li>
+<li>加 Carry 约束 — 低风险溢价环境不加仓。</li>
+<li>显式滑点模型（信号触发 → T+1&#x2F;2&#x2F;7 实际成交价）。</li>
+</ol>
+<p><strong>P1（一年内）</strong>：<br>4. Monte Carlo Permutation Test（14 次调仓乱序，1000 次） — 量化 Sharpe 1.19 在小样本下的 p-value。<br>5. Regime 分解（2007-09 &#x2F; 2010-15 &#x2F; 2016-19 &#x2F; 2020-22 &#x2F; 2023-26）— 确认不是”压路机前硬币”。<br>6. 加 Risk Premium Ratio 对称指标 — 让 CSI&lt;1.0 时也有加仓依据。<br>7. walk-forward &#x2F; OOS（2010-01–2014-12 拟合、2015+ 验证）— 这是最能堵住过拟合质疑的检验。</p>
+<p><strong>P2（长期）</strong>：<br>8. Target-Date 联动（年龄&#x2F;资金量 → 股债比例）。<br>9. 加 ESG &#x2F; QUAL 偏好明示。<br>10. Macro Dashboard 周报。</p>
+<p><strong>两条最关键改进</strong>：</p>
+<ul>
+<li><strong>A.</strong> 把 CSI 离散 3 档连续化 — WARNING 也带部分减仓（如减 30% 而非全减）。</li>
+<li><strong>B.</strong> “信号真伪”反推机制 — 每次调仓后做事后复盘，给下一年同类信号做校准。</li>
+</ul>
+<h2 id="八、终极判断（一句话）"><a href="#八、终极判断（一句话）" class="headerlink" title="八、终极判断（一句话）"></a>八、终极判断（一句话）</h2><p>WIF v5.9 是一个 <strong>以风控换收益、以纪律换稳定</strong> 的极低频系统：在 19 年里只做 14 个决策、夏普 1.19、压回撤到 -23%、vs SPY 拿 1.51 倍 — 它最适合”想长期稳健但懒得盯盘、愿意承受资金门槛与赎回滞后”的持有者；最不适合追求高频 alpha、追逐涨停板、要求年化 20%+ 的人。</p>
+<p><strong>最大软肋是 14 次样本的统计显著性 + 起始于危机前夜的时间窗口选择</strong> — 这两点需要后续通过 walk-forward + Monte Carlo 来闭合，否则&quot;反脆弱&quot;叙事会比数字更响亮。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Zhuang Wei Ming
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://zhuang-weiming.github.io/2026/07/13/WIF%20v5.9%20%E8%B4%A2%E5%AF%8C%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A/" title="体验Vibe-Trading">https://zhuang-weiming.github.io/2026/07/13/WIF v5.9 财富投资框架全面评估报告/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="../../../../tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="../../../../tags/AI/" rel="tag"># AI</a>
+              <a href="../../../../tags/Finance/" rel="tag"># Finance</a>
+              <a href="../../../../tags/Finance-Banking/" rel="tag"># Finance-Banking</a>
+              <a href="../../../../tags/Finance-WealthManagement/" rel="tag"># Finance-WealthManagement</a>
+              <a href="../../../../tags/Finance-QuantTrading/" rel="tag"># Finance-QuantTrading</a>
+              <a href="../../../../tags/AI-Trading/" rel="tag"># AI-Trading</a>
+              <a href="../../../../tags/Algorithm-trading/" rel="tag"># Algorithm-trading</a>
+              <a href="../../../../tags/Fintech/" rel="tag"># Fintech</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="../%E4%BD%93%E9%AA%8CVibe-Trading/" rel="prev" title="体验Vibe-Trading">
+                  <i class="fa fa-angle-left"></i> 体验Vibe-Trading
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="../../../08/02/%E6%B7%B1%E5%85%A5Hyperliquid/" rel="next" title="深入Hyperliquid">
+                  深入Hyperliquid <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Zhuang Wei Ming</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhuang-weiming/zhuang-weiming.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="../../../../js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>

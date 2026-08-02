@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 8.1.1">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../../../../images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../../../../images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../../../../images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="../../../../images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="../../../../css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha256-VHqXKFhhMxcpubYf9xiWdCiojEbY9NexQ4jh8AxbvcM=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.css" integrity="sha256-gkQVf8UKZgQ0HyuxL/VnacadJ+D2Kox2TCEBuNQg5+w=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"zhuang-weiming.github.io","root":"/","images":"../../../../images","scheme":"Muse","darkmode":false,"version":"8.27.0","exturl":false,"sidebar":{"position":"right","width_expanded":320,"width_dual_column":240,"display":"post","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":true,"pangu":false,"comments":{"style":"buttons","active":"disqus","storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"},"path":"../../../../search.json","localsearch":{"enable":true,"top_n_per_article":2,"unescape":true,"preload":false}}</script><script src="../../../../js/config.js" defer></script>
+
+    <meta name="description" content="1. Hyperliquid 是什么——以及它为什么能冲到市值前列项目定位Hyperliquid 由 Jeff Yan（哈佛物理奥赛金牌得主）带领约 10 人团队于 2022 年创立，2023 年主网上线。核心理念很简单：把中心化交易所（CEX）的体验搬到链上，同时保持真正的去中心化。 几个关键设计：  自研 L1 区块链 — 不是部署在以太坊或 Solana 上的应用，而是自己建了一条链。自研的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入Hyperliquid">
+<meta property="og:url" content="https://zhuang-weiming.github.io/2026/08/02/%E6%B7%B1%E5%85%A5Hyperliquid/index.html">
+<meta property="og:site_name" content="Zhuang&#39;s Diary">
+<meta property="og:description" content="1. Hyperliquid 是什么——以及它为什么能冲到市值前列项目定位Hyperliquid 由 Jeff Yan（哈佛物理奥赛金牌得主）带领约 10 人团队于 2022 年创立，2023 年主网上线。核心理念很简单：把中心化交易所（CEX）的体验搬到链上，同时保持真正的去中心化。 几个关键设计：  自研 L1 区块链 — 不是部署在以太坊或 Solana 上的应用，而是自己建了一条链。自研的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-08-02T03:46:00.000Z">
+<meta property="article:modified_time" content="2026-08-02T03:46:18.451Z">
+<meta property="article:author" content="Zhuang Wei Ming">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="Algorithm-trading">
+<meta property="article:tag" content="Blockchain">
+<meta property="article:tag" content="Blockchain-Consensus">
+<meta property="article:tag" content="Blockchain-EVM">
+<meta property="article:tag" content="Finance">
+<meta property="article:tag" content="Finance-Banking">
+<meta property="article:tag" content="Finance-CryptoAsset">
+<meta property="article:tag" content="Finance-QuantTrading">
+<meta property="article:tag" content="Finance-WealthManagement">
+<meta property="article:tag" content="Fintech">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://zhuang-weiming.github.io/2026/08/02/%E6%B7%B1%E5%85%A5Hyperliquid/">
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://zhuang-weiming.github.io/2026/08/02/%E6%B7%B1%E5%85%A5Hyperliquid/","path":"2026/08/02/深入Hyperliquid/","title":"深入Hyperliquid"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>深入Hyperliquid | Zhuang's Diary</title>
+  
+
+
+
+
+
+
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/next-theme-pjax/0.6.0/pjax.min.js" integrity="sha256-vxLn1tSKWD4dqbMRyv940UYw4sXgMtYcK6reefzZrao=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancyapps-ui/5.0.31/fancybox/fancybox.umd.js" integrity="sha256-a+H7FYzJv6oU2hfsfDGM2Ohw/cR9v+hPfxHCLdmCrE8=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous" defer></script>
+<script src="../../../../js/utils.js" defer></script><script src="../../../../js/motion.js" defer></script><script src="../../../../js/sidebar.js" defer></script><script src="../../../../js/next-boot.js" defer></script><script src="../../../../js/pjax.js" defer></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.5.0/search.js" integrity="sha256-xFC6PJ82SL9b3WkGjFavNiA9gm5z6UBxWPiu4CYjptg=" crossorigin="anonymous" defer></script>
+<script src="../../../../js/third-party/search/local-search.js" defer></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.3.1/pdfobject.min.js","integrity":"sha256-jI72I8ZLVflVOisZIOaLvRew3tyvzeu6aZXFm7P7dEo="},"url":"../../../../lib/pdf/web/viewer.html"}</script>
+  <script src="../../../../js/third-party/tags/pdf.js" defer></script>
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"default","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/11.10.1/mermaid.min.js","integrity":"sha256-BmQmdWDS8X2OTbrwELWK366LV6escyWhHHe0XCTU/Hk="}}</script>
+  <script src="../../../../js/third-party/tags/mermaid.js" defer></script>
+
+
+  <script src="../../../../js/third-party/fancybox.js" defer></script>
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="../../../../js/third-party/math/mathjax.js" defer></script>
+
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/3.0.1/quicklink.umd.js" integrity="sha256-44BednzIpUeQJcY8qtLyarFu0UCCTbgmWOvaoehiFQQ=" crossorigin="anonymous" defer></script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://zhuang-weiming.github.io/2026/08/02/%E6%B7%B1%E5%85%A5Hyperliquid/"}</script>
+  <script src="../../../../js/third-party/quicklink.js" defer></script>
+
+  <noscript>
+    <link rel="stylesheet" href="../../../../css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Zhuang's Diary</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">言之有物，持之以恒</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="../../../../index.html" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-tags"><a href="../../../../tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags<span class="badge">66</span></a></li><li class="menu-item menu-item-archives"><a href="../../../../archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives<span class="badge">310</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>Search
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+      <div class="search-header">
+        <span class="search-icon">
+          <i class="fa fa-search"></i>
+        </span>
+        <div class="search-input-container">
+          <input autocomplete="off" autocapitalize="off" maxlength="80"
+                placeholder="Searching..." spellcheck="false"
+                type="search" class="search-input">
+        </div>
+        <span class="popup-btn-close" role="button">
+          <i class="fa fa-times-circle"></i>
+        </span>
+      </div>
+      <div class="search-result-container">
+        <div class="search-result-icon">
+          <i class="fa fa-spinner fa-pulse fa-5x"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Hyperliquid-%E6%98%AF%E4%BB%80%E4%B9%88%E2%80%94%E2%80%94%E4%BB%A5%E5%8F%8A%E5%AE%83%E4%B8%BA%E4%BB%80%E4%B9%88%E8%83%BD%E5%86%B2%E5%88%B0%E5%B8%82%E5%80%BC%E5%89%8D%E5%88%97"><span class="nav-number">1.</span> <span class="nav-text">1. Hyperliquid 是什么——以及它为什么能冲到市值前列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E5%AE%9A%E4%BD%8D"><span class="nav-number">1.1.</span> <span class="nav-text">项目定位</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%82%E5%9C%BA%E8%A1%A8%E7%8E%B0"><span class="nav-number">1.2.</span> <span class="nav-text">市场表现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8A%E6%B6%A8%E7%9A%84%E6%A0%B8%E5%BF%83%E9%80%BB%E8%BE%91"><span class="nav-number">1.3.</span> <span class="nav-text">上涨的核心逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%8A%80%E6%9C%AF%E6%9E%B6%E6%9E%84%EF%BC%9A%E4%B8%89%E5%B1%82%E5%88%86%E7%A6%BB%E8%AE%BE%E8%AE%A1"><span class="nav-number">2.</span> <span class="nav-text">2. 技术架构：三层分离设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Layer-1%EF%BC%9AHyperBFT-%E5%85%B1%E8%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">3. Layer 1：HyperBFT 共识算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HotStuff-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A2%AB%E9%80%89%E4%B8%AD"><span class="nav-number">3.1.</span> <span class="nav-text">HotStuff 为什么被选中</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HyperBFT-%E7%9A%84%E6%A0%B8%E5%BF%83%E6%94%B9%E8%BF%9B%EF%BC%9A%E6%B5%81%E6%B0%B4%E7%BA%BF%E5%8C%96"><span class="nav-number">3.2.</span> <span class="nav-text">HyperBFT 的核心改进：流水线化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94"><span class="nav-number">3.3.</span> <span class="nav-text">性能对比</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.4.</span> <span class="nav-text">安全模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Layer-2%EF%BC%9A%E5%8F%8C%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E"><span class="nav-number">4.</span> <span class="nav-text">4. Layer 2：双执行引擎</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HyperCore-%E2%80%94-%E5%AF%B9%E4%BA%A4%E6%98%93%E6%89%80%E9%87%8F%E8%BA%AB%E5%AE%9A%E5%88%B6%E7%9A%84%E5%8E%9F%E7%94%9F%E5%BC%95%E6%93%8E"><span class="nav-number">4.1.</span> <span class="nav-text">HyperCore — 对交易所量身定制的原生引擎</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HyperEVM-%E2%80%94-%E9%80%9A%E7%94%A8%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6%E5%B1%82"><span class="nav-number">4.2.</span> <span class="nav-text">HyperEVM — 通用智能合约层</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Layer-3%EF%BC%9A%E5%8D%8F%E8%AE%AE%E5%8E%9F%E8%AF%AD%E4%B8%8E%E7%BB%8F%E6%B5%8E%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">5. Layer 3：协议原语与经济机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HLP-%E9%87%91%E5%BA%93"><span class="nav-number">5.1.</span> <span class="nav-text">HLP 金库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HIP-%E5%8D%8F%E8%AE%AE%E6%A0%87%E5%87%86"><span class="nav-number">5.2.</span> <span class="nav-text">HIP 协议标准</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9B%B6-Gas-%E6%9C%BA%E5%88%B6"><span class="nav-number">5.3.</span> <span class="nav-text">零 Gas 机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-HotStuff-%E5%85%B1%E8%AF%86%E6%A0%B8%E5%BF%83%E6%B4%9E%E5%AF%9F"><span class="nav-number">6.</span> <span class="nav-text">6. HotStuff 共识核心洞察</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AD%A6%E6%9C%AF%E8%B0%B1%E7%B3%BB"><span class="nav-number">6.1.</span> <span class="nav-text">学术谱系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HotStuff-%E7%9A%84%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E8%B4%A1%E7%8C%AE"><span class="nav-number">6.2.</span> <span class="nav-text">HotStuff 的三个核心贡献</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E9%94%99%E6%80%A7"><span class="nav-number">6.3.</span> <span class="nav-text">容错性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-BLS-%E8%81%9A%E5%90%88%E7%AD%BE%E5%90%8D%E4%B8%8E-QC-TC"><span class="nav-number">7.</span> <span class="nav-text">7. BLS 聚合签名与 QC &#x2F; TC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E5%87%BA%E5%9D%97%E7%9A%84-O-n-%E9%80%9A%E4%BF%A1%E6%B5%81"><span class="nav-number">7.1.</span> <span class="nav-text">正常出块的 O(n) 通信流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E6%B0%B4%E7%BA%BF%EF%BC%9A%E4%B8%89%E9%98%B6%E6%AE%B5%E8%B7%A8%E8%BD%AE%E9%87%8D%E5%8F%A0"><span class="nav-number">7.2.</span> <span class="nav-text">流水线：三阶段跨轮重叠</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BLS-%E8%81%9A%E5%90%88%E7%AD%BE%E5%90%8D"><span class="nav-number">7.3.</span> <span class="nav-text">BLS 聚合签名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#QC-%E5%92%8C-TC-%E7%9A%84%E7%BB%9F%E4%B8%80%E8%A7%86%E8%A7%92"><span class="nav-number">7.4.</span> <span class="nav-text">QC 和 TC 的统一视角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View-Change-%E5%AE%8C%E6%95%B4%E6%B5%81%E7%A8%8B"><span class="nav-number">7.5.</span> <span class="nav-text">View Change 完整流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Q-A-%E7%B2%BE%E9%80%89"><span class="nav-number">8.</span> <span class="nav-text">8. Q&amp;A 精选</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%EF%BC%9AHotStuff-%E5%88%B0%E5%BA%95%E6%98%AF%E7%90%86%E8%AE%BA%E7%9A%84%E5%88%9B%E6%96%B0%EF%BC%8C%E8%BF%98%E6%98%AF%E4%BB%A5%E5%89%8D%E8%AE%BA%E6%96%87%E5%B7%B2%E6%9C%89%E8%AE%B2%E8%BF%B0%EF%BC%9F"><span class="nav-number">8.1.</span> <span class="nav-text">问：HotStuff 到底是理论的创新，还是以前论文已有讲述？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%EF%BC%9AReplica-%E4%B9%8B%E9%97%B4%E4%B8%8D%E9%80%9A%E4%BF%A1%EF%BC%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%98%E8%83%BD%E6%9C%89-QC-%E7%9A%84%E7%8A%B6%E6%80%81%EF%BC%9F"><span class="nav-number">8.2.</span> <span class="nav-text">问：Replica 之间不通信，为什么还能有 QC 的状态？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%97%AE%EF%BC%9A%E6%97%A2%E7%84%B6-Leader-A-%E4%B8%8D%E5%8F%AF%E4%BF%A1%EF%BC%8CLeader-B-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E9%87%8D%E7%94%A8-Leader-A-%E7%9A%84-QC%EF%BC%9F"><span class="nav-number">8.3.</span> <span class="nav-text">问：既然 Leader A 不可信，Leader B 为什么要重用 Leader A 的 QC？</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E4%B8%9A%E5%8A%A1%E8%BD%A8%E8%BF%B9"><span class="nav-number">9.</span> <span class="nav-text">9. 业务轨迹</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BA%A7%E5%93%81%E4%B8%89%E6%AD%A5%E6%A3%8B%EF%BC%9A%E4%BB%8E%E6%B0%B8%E7%BB%AD%E5%90%88%E7%BA%A6%EF%BC%8C%E5%88%B0%E6%97%A0%E8%AE%B8%E5%8F%AF%E4%B8%8A%E5%B8%81%EF%BC%8C%E5%88%B0%E9%A2%84%E6%B5%8B%E5%B8%82%E5%9C%BA"><span class="nav-number">9.1.</span> <span class="nav-text">产品三步棋：从永续合约，到无许可上币，到预测市场</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HIP-3-%E7%9A%84%E7%88%86%E5%8F%91%EF%BC%9ASpaceX-%E4%B8%8E-Pre-IPO-%E6%B0%B8%E7%BB%AD%E5%90%88%E7%BA%A6"><span class="nav-number">9.2.</span> <span class="nav-text">HIP-3 的爆发：SpaceX 与 Pre-IPO 永续合约</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#SpaceX-%E7%9A%84%E6%95%85%E4%BA%8B"><span class="nav-number">9.2.1.</span> <span class="nav-text">SpaceX 的故事</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B0%8F%E4%BA%8E-3-%E8%AF%AF%E5%B7%AE%EF%BC%9ACerebras-%E7%9A%84%E6%95%85%E4%BA%8B"><span class="nav-number">9.3.</span> <span class="nav-text">小于 3% 误差：Cerebras 的故事</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Zhuang Wei Ming</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="../../../../archives/">
+          <span class="site-state-item-count">310</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="../../../../tags/">
+        <span class="site-state-item-count">66</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="../../../../zwm136200@gmail.com" title="E-Mail → zwm136200@gmail.com" rel="noopener me"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+        <div class="back-to-top animated" role="button" aria-label="Back to top">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://zhuang-weiming.github.io/2026/08/02/%E6%B7%B1%E5%85%A5Hyperliquid/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="../../../../images/avatar.gif">
+      <meta itemprop="name" content="Zhuang Wei Ming">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Zhuang's Diary">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="深入Hyperliquid | Zhuang's Diary">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          深入Hyperliquid
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-08-02 11:46:00 / Modified: 11:46:18" itemprop="dateCreated datePublished" datetime="2026-08-02T11:46:00+08:00">2026-08-02</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="1-Hyperliquid-是什么——以及它为什么能冲到市值前列"><a href="#1-Hyperliquid-是什么——以及它为什么能冲到市值前列" class="headerlink" title="1. Hyperliquid 是什么——以及它为什么能冲到市值前列"></a>1. <a target="_blank" rel="noopener" href="https://hyperliquid.gitbook.io/hyperliquid-docs">Hyperliquid</a> 是什么——以及它为什么能冲到市值前列</h2><h3 id="项目定位"><a href="#项目定位" class="headerlink" title="项目定位"></a>项目定位</h3><p>Hyperliquid 由 Jeff Yan（哈佛物理奥赛金牌得主）带领约 10 人团队于 2022 年创立，2023 年主网上线。核心理念很简单：<strong>把中心化交易所（CEX）的体验搬到链上，同时保持真正的去中心化</strong>。</p>
+<p>几个关键设计：</p>
+<ol>
+<li><strong>自研 L1 区块链</strong> — 不是部署在以太坊或 Solana 上的应用，而是自己建了一条链。自研的 HyperBFT 共识算法能做到每秒 10 万笔订单、亚秒级确认，性能直接对标币安。</li>
+<li><strong>完全上链的订单簿（CLOB）</strong> — 与 GMX（AMM 模式）或 dYdX（部分链下）不同，Hyperliquid 把撮合逻辑全部放在链上。</li>
+<li><strong>零 Gas 费交易</strong> — 用户交易基本不付 Gas，对高频交易者每年能省数万美元。</li>
+<li><strong>无需 KYC</strong> — 连钱包就能交易。</li>
+<li><strong>2025 年 2 月上线 HyperEVM</strong> — 在交易引擎之上加了 EVM 兼容层，HYPE 成为原生 Gas 代币。</li>
+</ol>
+<h3 id="市场表现"><a href="#市场表现" class="headerlink" title="市场表现"></a>市场表现</h3><ul>
+<li>Coinmarketcap 本日排名第九，Market cap $13.32B。</li>
+<li>占据<strong>链上永续合约交易量 70% 以上</strong>的市场份额</li>
+<li>月交易量从 2160 亿美元涨到近 3200 亿美元</li>
+<li>BTC 永续合约交易量达到币安的 10%–14%</li>
+<li>累计交易量突破 2.3 万亿美元，TVL 达 35 亿美元</li>
+<li>加密生态收入排名第四，总收入超 6.5 亿美元</li>
+</ul>
+<h3 id="上涨的核心逻辑"><a href="#上涨的核心逻辑" class="headerlink" title="上涨的核心逻辑"></a>上涨的核心逻辑</h3><p><strong>技术 + 代币经济学 + 社区叙事三者共振：</strong></p>
+<ul>
+<li><strong>真实的使用量爆发</strong>：数据不会撒谎</li>
+<li><strong>极致的社区优先代币经济学</strong>：拒绝 VC 融资，31% 代币空投给 9.4 万早期用户；97% 的手续费收入用于回购 HYPE，已回购约 15 亿美元</li>
+<li><strong>巨鲸效应</strong>：James Wynn、Machi Big Brother 等知名巨鲸在 Hyperliquid 上做公开大额交易，平台因其链上透明性成为”巨鲸交易首选场所”</li>
+<li><strong>正式上币速度</strong>：TRUMP 代币发布时，Hyperliquid 第一时间上线永续合约，抢在所有大所前面</li>
+<li><strong>机构认可</strong>：21Shares 已向 SEC 申请 HYPE 现货 ETF</li>
+</ul>
+<hr>
+<h2 id="2-技术架构：三层分离设计"><a href="#2-技术架构：三层分离设计" class="headerlink" title="2. 技术架构：三层分离设计"></a>2. 技术架构：三层分离设计</h2><p>Hyperliquid 不是”一个程序”，而是设计为三层正交分离的系统：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">┌─────────────────────────────┐</span><br><span class="line">│用户应用层 (DEX UI, 第三方前端) │</span><br><span class="line">├──────────────┬──────────────┤</span><br><span class="line">│  HyperCore   │  HyperEVM    │  ← 双执行引擎</span><br><span class="line">│  (交易引擎)   │  (智能合约)    │</span><br><span class="line">├──────────────┴──────────────┤</span><br><span class="line">│         HyperBFT            │  ← 共识层</span><br><span class="line">│      (HotStuff 变种)         │</span><br><span class="line">└─────────────────────────────┘</span><br></pre></td></tr></table></figure>
+
+<p>每一层各司其职，共享同一个共识层提供的区块序列。</p>
+<hr>
+<h2 id="3-Layer-1：HyperBFT-共识算法"><a href="#3-Layer-1：HyperBFT-共识算法" class="headerlink" title="3. Layer 1：HyperBFT 共识算法"></a>3. Layer 1：HyperBFT 共识算法</h2><p>HyreBFT 源自学术论文 <strong>HotStuff BFT</strong>（Yin, Malkhi, Reiter, Gueta, Abraham, PODC 2019），并做了关键的工程优化。</p>
+<h3 id="HotStuff-为什么被选中"><a href="#HotStuff-为什么被选中" class="headerlink" title="HotStuff 为什么被选中"></a>HotStuff 为什么被选中</h3><p>传统 BFT 协议（如 PBFT）每轮共识的消息复杂度是 <strong>O(n²)</strong>——每个节点都要和所有其他节点通信。验证者一多，延迟就爆炸。</p>
+<p>HotStuff 的核心创新是<strong>线性 View Change</strong>：改为<strong>单一领导者提议 → 所有验证者向领导者发送投票 → 领导者聚合</strong>，消息复杂度降到 <strong>O(n)</strong>。</p>
+<figure class="highlight isbl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">PBFT</span>:   每个节点 ↔ 每个节点    → <span class="function"><span class="title">O</span>(<span class="variable">n</span>²)</span></span><br><span class="line"><span class="variable">HotStuff</span>:  节点 → 领导者 → 节点   → <span class="function"><span class="title">O</span>(<span class="variable">n</span>)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="HyperBFT-的核心改进：流水线化"><a href="#HyperBFT-的核心改进：流水线化" class="headerlink" title="HyperBFT 的核心改进：流水线化"></a>HyperBFT 的核心改进：流水线化</h3><p>这是 200,000+ TPS 最关键的技术手段。</p>
+<p>传统 BFT 是<strong>串行</strong>的，每个区块必须走完 “提议 → 投票 → 提交” 才能开始下一个。HyperBFT 采用<strong>流水线并行</strong>——当区块 N 还在投票阶段，领导者已经开始<strong>并行提交</strong>区块 N+1。空闲时间被全部吃掉，吞吐量成倍提升。</p>
+<h3 id="性能对比"><a href="#性能对比" class="headerlink" title="性能对比"></a>性能对比</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>HyperBFT</th>
+<th>以太坊 PoS</th>
+<th>Solana</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>出块最终性</td>
+<td><strong>~0.07 秒</strong></td>
+<td>~13 分钟 (finalized)</td>
+<td>~0.4 秒</td>
+</tr>
+<tr>
+<td>理论 TPS</td>
+<td><strong>&gt;200,000</strong></td>
+<td>15-30</td>
+<td>~4,000</td>
+</tr>
+<tr>
+<td>端到端延迟 (中位数)</td>
+<td><strong>0.2 秒</strong></td>
+<td>~12 秒</td>
+<td>~0.4 秒</td>
+</tr>
+<tr>
+<td>端到端延迟 (P99)</td>
+<td><strong>0.9 秒</strong></td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>重组织风险</td>
+<td><strong>零</strong> (绝对最终性)</td>
+<td>概率性</td>
+<td>概率性</td>
+</tr>
+</tbody></table>
+<p>关键理解：HyperBFT 的最终性是<strong>确定性</strong>的，不是概率性的。一旦一个区块被超过 2&#x2F;3 的质押权重确认，它就<strong>永远不会被回滚</strong>。这对衍生品交易所至关重要。</p>
+<h3 id="安全模型"><a href="#安全模型" class="headerlink" title="安全模型"></a>安全模型</h3><ul>
+<li>容错上限：容忍 ≤ 1&#x2F;3 质押权重的拜占庭节点</li>
+<li><strong>安全 &gt; 活性</strong>：如果网络分裂，宁可暂停也绝不产生冲突区块</li>
+<li>验证者数量：目前约 21–27 个，是刻意为之——验证者越少，通信复杂度越低，延迟越低</li>
+</ul>
+<hr>
+<h2 id="4-Layer-2：双执行引擎"><a href="#4-Layer-2：双执行引擎" class="headerlink" title="4. Layer 2：双执行引擎"></a>4. Layer 2：双执行引擎</h2><h3 id="HyperCore-—-对交易所量身定制的原生引擎"><a href="#HyperCore-—-对交易所量身定制的原生引擎" class="headerlink" title="HyperCore — 对交易所量身定制的原生引擎"></a>HyperCore — 对交易所量身定制的原生引擎</h3><p>用 Rust 编写的原生代码，直接嵌入节点软件。撮合、保证金计算、清算全部是<strong>原生指令</strong>，执行速度可比肩 NASDAQ。</p>
+<p><strong>完全上链的中央限价订单簿（CLOB）：</strong></p>
+<figure class="highlight nestedtext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">GMX / Uniswap 模式</span><span class="punctuation">:</span> <span class="string"> 用户 → AMM 池 → 价格由公式决定</span></span><br><span class="line"><span class="attribute">dYdX v3 模式</span><span class="punctuation">:</span> <span class="string">       用户 → 链下撮合引擎 → 链上结算（不透明）</span></span><br><span class="line"><span class="attribute">Hyperliquid 模式</span><span class="punctuation">:</span> <span class="string">   用户 → 链上订单簿 → 链上撮合 → 链上结算（全透明）</span></span><br></pre></td></tr></table></figure>
+
+<p>每一笔挂单、撤单、成交、资金费率结算、强平<strong>全部发生在 Layer 1</strong>，继承 HyperBFT 的最终性保证。</p>
+<p>支持的订单类型：限价单、市价单、止损单、止盈单、TWAP。</p>
+<p><strong>清算机制</strong>：当仓位跌破维持保证金阈值，自动触发清算。清算盈余不归 MEV 机器人，也不归保险基金，而是<strong>重新定向到 HLP 金库</strong>——这是把经济价值还给协议参与者的关键设计。</p>
+<h3 id="HyperEVM-—-通用智能合约层"><a href="#HyperEVM-—-通用智能合约层" class="headerlink" title="HyperEVM — 通用智能合约层"></a>HyperEVM — 通用智能合约层</h3><p>2025 年 2 月上线的 HyperEVM 让 Hyperliquid 从”交易所链”变成<strong>可编程金融基础设施</strong>。</p>
+<p><strong>双区块模型：</strong></p>
+<table>
+<thead>
+<tr>
+<th>区块类型</th>
+<th>频率</th>
+<th>Gas 上限</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>小块（Fast Blocks）</td>
+<td>~1 秒</td>
+<td>2M</td>
+<td>简单转账、快速交互</td>
+</tr>
+<tr>
+<td>大块（Slow Blocks）</td>
+<td>~1 分钟</td>
+<td>30M</td>
+<td>复杂合约部署、批量操作</td>
+</tr>
+</tbody></table>
+<p><strong>Precompile — 零成本预言机</strong>：HyperEVM 的智能合约可以<strong>直接读取 HyperCore 的状态</strong>，无需外部预言机。例如，借贷协议可以直接读取用户在 HyperCore 上的持仓价值作为抵押品——同一区块、同一共识轮、零预言机延迟。</p>
+<hr>
+<h2 id="5-Layer-3：协议原语与经济机制"><a href="#5-Layer-3：协议原语与经济机制" class="headerlink" title="5. Layer 3：协议原语与经济机制"></a>5. Layer 3：协议原语与经济机制</h2><h3 id="HLP-金库"><a href="#HLP-金库" class="headerlink" title="HLP 金库"></a>HLP 金库</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>管理费</td>
+<td><strong>0%</strong></td>
+</tr>
+<tr>
+<td>锁定期</td>
+<td>4 天（防闪电贷攻击）</td>
+</tr>
+<tr>
+<td>收益来源</td>
+<td>做市买卖价差 + 清算盈余</td>
+</tr>
+<tr>
+<td>透明度</td>
+<td>完全上链可审计</td>
+</tr>
+</tbody></table>
+<h3 id="HIP-协议标准"><a href="#HIP-协议标准" class="headerlink" title="HIP 协议标准"></a>HIP 协议标准</h3><table>
+<thead>
+<tr>
+<th>标准</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>HIP-1</td>
+<td>原生代币发行 — 自带上链订单簿</td>
+</tr>
+<tr>
+<td>HIP-2</td>
+<td>“Hyperliquidity” — 受 Uniswap 启发的订单簿流动性机制</td>
+</tr>
+<tr>
+<td>HIP-3</td>
+<td>无许可上币 — 荷兰式拍卖定价，质押 HYPE 即可创建市场</td>
+</tr>
+<tr>
+<td>HIP-4</td>
+<td>结果合约（预测市场）</td>
+</tr>
+</tbody></table>
+<h3 id="零-Gas-机制"><a href="#零-Gas-机制" class="headerlink" title="零 Gas 机制"></a>零 Gas 机制</h3><p>用户<strong>下单、撤单、改单全部零 Gas</strong>，只在<strong>成交</strong>时支付交易手续费。对做市商和高频策略来说，每年省下的 Gas 可达数万美元。</p>
+<hr>
+<h2 id="6-HotStuff-共识核心洞察"><a href="#6-HotStuff-共识核心洞察" class="headerlink" title="6. HotStuff 共识核心洞察"></a>6. HotStuff 共识核心洞察</h2><h3 id="学术谱系"><a href="#学术谱系" class="headerlink" title="学术谱系"></a>学术谱系</h3><p>BFT 共识有一条清晰的演进脉络：</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1999</span> ── PBFT (Castro &amp; Liskov)</span><br><span class="line">         <span class="built_in">O</span>(n²) 消息复杂度, View Change 需全体广播</span><br><span class="line">              │</span><br><span class="line"><span class="number">2018</span> ── HotStuff (Yin, Malkhi, Reiter, Gueta, Abraham)</span><br><span class="line">         ✅ 首次实现 线性 View Change (O(n))</span><br><span class="line">         ✅ 首次实现 流水线化共识</span><br><span class="line">         ✅ 引入 &quot;响应性&quot; (Responsiveness)</span><br><span class="line">         PODC <span class="number">2019</span> 发表</span><br><span class="line">              │</span><br><span class="line"><span class="number">2019</span> ── LibraBFT 建立在 HotStuff 之上</span><br><span class="line">		正常出块: <span class="built_in">O</span>(n) ✅（保留 HotStuff 流水线） </span><br><span class="line">		Timeout/同步: <span class="built_in">O</span>(n²) ❌（广播退回去了） </span><br><span class="line">		← 为了活性证明更简单，主动牺牲效率</span><br><span class="line">              │</span><br><span class="line"><span class="number">2023</span> ── HyperBFT (Hyperliquid 工程优化版)</span><br><span class="line">		← 恢复并强化 HotStuff 的原始选择</span><br></pre></td></tr></table></figure>
+
+<h3 id="HotStuff-的三个核心贡献"><a href="#HotStuff-的三个核心贡献" class="headerlink" title="HotStuff 的三个核心贡献"></a>HotStuff 的三个核心贡献</h3><p><strong>1. 线性 View Change（O(n) 消息复杂度）</strong></p>
+<p>在 HotStuff 之前<strong>没有人同时做到过</strong>。关键在于引入 Quorum Certificate (QC) 和 Timeout Certificate (TC) 作为聚合签名的载体：</p>
+<figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">PBFT/Libra View Change (O(<span class="built_in">n</span>²))<span class="symbol">:</span></span><br><span class="line">  每个节点广播自己的状态 → 新 Leader 收集 <span class="built_in">n</span> 份状态 → 聚合 → 广播</span><br><span class="line">  = O(<span class="built_in">n</span>²) 条消息</span><br><span class="line"></span><br><span class="line">HotStuff View Change (O(<span class="built_in">n</span>))<span class="symbol">:</span></span><br><span class="line">  节点们签名 Timeout → 聚合为 <span class="number">1</span> 个 TC → 新 Leader 收到 <span class="number">1</span> 个 TC → 继续</span><br><span class="line">  = O(<span class="built_in">n</span>) 条消息</span><br></pre></td></tr></table></figure>
+
+<p><strong>2. 流水线化（Pipelining）</strong></p>
+<p>每个提议在 Prepare &#x2F; Pre-commit &#x2F; Commit 阶段的投票消息，其 Quorum Certificate 可以<strong>被下一个区块的提议者复用</strong>，形成流水线。在 BFT 文献中首次提出。</p>
+<p><strong>3. 响应性（Responsiveness）</strong></p>
+<p>传统 BFT 在有部分节点故障时必须等待预设超时。HotStuff 证明在同步期（网络正常时），协议可以<strong>以网络延迟速度推进</strong>而非固定超时。</p>
+<h3 id="容错性"><a href="#容错性" class="headerlink" title="容错性"></a>容错性</h3><p>HotStuff 和 PBFT 的容错公式完全相同：<strong>n &#x3D; 3f + 1</strong>。HotStuff 改变的是通信复杂度，不是容错率。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>PBFT</th>
+<th>HotStuff</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>容错公式</td>
+<td>n &#x3D; 3f+1</td>
+<td>n &#x3D; 3f+1 (相同)</td>
+</tr>
+<tr>
+<td>消息复杂度</td>
+<td>O(n²)</td>
+<td>O(n) (不同)</td>
+</tr>
+<tr>
+<td>View Change</td>
+<td>O(n²)</td>
+<td>O(n) (不同)</td>
+</tr>
+<tr>
+<td>安全性条件</td>
+<td>f &lt; n&#x2F;3</td>
+<td>f &lt; n&#x2F;3 (相同)</td>
+</tr>
+</tbody></table>
+<p>一个区块从提议到提交，必须经过 <strong>Prepare → Pre-commit → Commit</strong> 三个阶段，每个都需要超过 2&#x2F;3 质押权重的独立签名。恶意块在第一轮 Prepare 投票就被诚实验证者毙掉了。</p>
+<p>如果领导者”装死”（不提议），View Change 机制会触发：验证者超时 → 广播 Timeout 消息 → 聚合为 TC → 新 Leader 上线。</p>
+<p><strong>边界情况</strong>：如果超过 2&#x2F;3 的质押权重被恶意控制，恶意块就可以提交。这不是 HotStuff 的缺陷，而是<strong>所有 BFT 协议的数学上限</strong>。</p>
+<hr>
+<h2 id="7-BLS-聚合签名与-QC-TC"><a href="#7-BLS-聚合签名与-QC-TC" class="headerlink" title="7. BLS 聚合签名与 QC &#x2F; TC"></a>7. BLS 聚合签名与 QC &#x2F; TC</h2><h3 id="正常出块的-O-n-通信流"><a href="#正常出块的-O-n-通信流" class="headerlink" title="正常出块的 O(n) 通信流"></a>正常出块的 O(n) 通信流</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Round <span class="number">1</span>: Leader ───广播区块提案──→ <span class="keyword">Replica</span> <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>   (<span class="number">1</span> 次广播)</span><br><span class="line">Round <span class="number">2</span>: <span class="keyword">Replica</span> <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span> ─签名─→ Leader              (n 条消息)</span><br><span class="line">         Leader 聚合签名为 QC</span><br><span class="line">Round <span class="number">3</span>: Leader ───广播 QC ──→ <span class="keyword">Replica</span> <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>       (<span class="number">1</span> 次广播)</span><br><span class="line"></span><br><span class="line">总共: <span class="number">2</span>n + <span class="number">2</span> ≈ O(n) 条消息</span><br></pre></td></tr></table></figure>
+
+<p>核心：所有通信都是 Leader ↔ Replica 的一对多广播，<strong>Replica 之间没有一条消息。</strong></p>
+<h3 id="流水线：三阶段跨轮重叠"><a href="#流水线：三阶段跨轮重叠" class="headerlink" title="流水线：三阶段跨轮重叠"></a>流水线：三阶段跨轮重叠</h3><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Round k:   <span class="comment">[──Prepare─]</span><span class="comment">[─Precommit─]</span><span class="comment">[──Commit──]</span></span><br><span class="line">Round k+1:             <span class="comment">[──Prepare─]</span><span class="comment">[─Precommit─]</span><span class="comment">[──Commit──]</span></span><br><span class="line">Round k+2:                        <span class="comment">[──Prepare─]</span><span class="comment">[─Precommit─]</span><span class="comment">[──Commit──]</span></span><br></pre></td></tr></table></figure>
+
+<p>下一个区块的 Prepare 消息<strong>顺便携带</strong>上一个区块的 Pre-commit QC，再下一个携带 Commit QC。三个阶段被聚合到一个 BLS 签名里，不需要为每个阶段单独跑一轮全网广播。</p>
+<h3 id="BLS-聚合签名"><a href="#BLS-聚合签名" class="headerlink" title="BLS 聚合签名"></a>BLS 聚合签名</h3><p>BLS 有一个核心数学性质：<strong>多个签名可以代数上相加，得到唯一一个聚合签名，大小等于单个签名</strong>。</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">σ<span class="variable">_agg</span> = σ<span class="variable">_A</span> + σ<span class="variable">_B</span> + σ<span class="variable">_C</span> + ... + σ<span class="variable">_N</span></span><br><span class="line">(一堆独立签名 → 数学相加 → 一个聚合签名，长度不变，约 <span class="number">96</span> 字节)</span><br><span class="line"></span><br><span class="line">验证时只需用聚合公钥 PK_agg = PK_A + PK_B + ... 验证一次</span><br></pre></td></tr></table></figure>
+
+<p>有无 BLS 的区别：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>无 BLS (如 ECDSA)</th>
+<th>有 BLS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>收集 67 个签名的 TC 大小</td>
+<td>~4KB</td>
+<td>~96 字节 (固定)</td>
+</tr>
+<tr>
+<td>验证成本</td>
+<td>67 次椭圆曲线验证</td>
+<td>1 次配对运算</td>
+</tr>
+<tr>
+<td>随节点扩展</td>
+<td>线性增长</td>
+<td>常量时间</td>
+</tr>
+</tbody></table>
+<h3 id="QC-和-TC-的统一视角"><a href="#QC-和-TC-的统一视角" class="headerlink" title="QC 和 TC 的统一视角"></a>QC 和 TC 的统一视角</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">QC (Quorum Certificate) = 正面的聚合证明</span><br><span class="line">  &quot;&gt;2/3 验证者同意这个区块&quot;</span><br><span class="line">  用于: <span class="keyword">Prepare</span> / Pre-<span class="keyword">commit</span> / <span class="keyword">Commit</span> 三个阶段</span><br><span class="line"></span><br><span class="line">TC (Timeout Certificate) = 负面的聚合证明</span><br><span class="line">  &quot;&gt;2/3 验证者同意当前 View 超时了&quot;</span><br><span class="line">  用于: <span class="keyword">View</span> Change</span><br><span class="line"></span><br><span class="line">二者基于同一个密码学原语: BLS 聚合签名</span><br><span class="line">结构几乎一样: &#123; <span class="keyword">view</span>, sig, high_qc, bitmap &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="View-Change-完整流程"><a href="#View-Change-完整流程" class="headerlink" title="View Change 完整流程"></a>View Change 完整流程</h3><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. 验证者等太久，触发超时</span><br><span class="line"><span class="number">2</span>. 每个验证者独立签名:</span><br><span class="line">   <span class="attr">msg</span> <span class="operator">=</span> <span class="string">&quot;Timeout: View=n, HighQC=&lt;我见过的最新QC&gt;&quot;</span></span><br><span class="line">   σ_i <span class="operator">=</span> BLS.Sign(sk_i, msg)</span><br><span class="line"><span class="number">3</span>. 广播签名到网络，聚合为 TC</span><br><span class="line"><span class="number">4</span>. TC <span class="operator">=</span> &#123; <span class="params">view:</span> n, <span class="params">sig:</span> σ_agg, <span class="params">high_qc:</span> <span class="operator">&lt;</span>最高QC<span class="operator">&gt;</span>, <span class="params">bitmap:</span> [签名者位图] &#125;</span><br><span class="line"><span class="number">5</span>. 新 Leader 收到 TC → 验证 BLS 签名有效 ✅</span><br><span class="line"><span class="number">6</span>. 基于 TC 中的 high_qc 知道 <span class="string">&quot;链推进到哪个区块了&quot;</span> → 继续正常出块</span><br></pre></td></tr></table></figure>
+
+<p><strong>HighQC</strong> 的作用：每个验证者签名 Timeout 时，把自己见过的最高 QC 附带。新 Leader 不需要逐节点问 “你看到哪了”——TC 里已经有答案。</p>
+<hr>
+<h2 id="8-Q-A-精选"><a href="#8-Q-A-精选" class="headerlink" title="8. Q&amp;A 精选"></a>8. Q&amp;A 精选</h2><h3 id="问：HotStuff-到底是理论的创新，还是以前论文已有讲述？"><a href="#问：HotStuff-到底是理论的创新，还是以前论文已有讲述？" class="headerlink" title="问：HotStuff 到底是理论的创新，还是以前论文已有讲述？"></a>问：HotStuff 到底是理论的创新，还是以前论文已有讲述？</h3><p>这是真正的理论创新。PBFT 论文问世 19 年后，大家普遍认为 BFT 共识 “该发现的都发现了”，HotStuff 在 PODC 2019 已经被证明其理论。</p>
+<ul>
+<li><strong>线性 View Change (O(n))</strong>：HotStuff 之前没有任何 BFT 协议做到过</li>
+<li><strong>流水线化共识</strong>：在 BFT 文献中首次提出</li>
+<li><strong>响应性</strong>：传统 BFT 需要固定超时，HotStuff 可以网络延迟速度推进</li>
+</ul>
+<p>第一作者尹茂帆是康奈尔大学博士生，合作者 Dahlia Malkhi 后来加入 Libra&#x2F;Diem 时直接把 HotStuff 选为 LibraBFT 的基础。这不是 PBFT 的改版，而是时隔 19 年后在 BFT 共识领域的独立突破。</p>
+<h3 id="问：Replica-之间不通信，为什么还能有-QC-的状态？"><a href="#问：Replica-之间不通信，为什么还能有-QC-的状态？" class="headerlink" title="问：Replica 之间不通信，为什么还能有 QC 的状态？"></a>问：Replica 之间不通信，为什么还能有 QC 的状态？</h3><p>“Replica 之间不通信”指的是<strong>没有直接的 Replica ↔ Replica 消息</strong>。但每个 Replica 一直在接收 Leader 的广播——Leader 在每轮 Prepare 阶段结束后，把聚合好的 QC <strong>广播给全体 Replica</strong>。这个广播是 O(n) 的（Leader → n 个 Replica），但每个 Replica 都收到了。</p>
+<p>共享状态来自 <strong>Leader 的广播</strong>，不是 Replica 之间的对等通信。这正是 O(n) 的核心——所有信息分发都通过 Leader 这个单一枢纽完成。</p>
+<h3 id="问：既然-Leader-A-不可信，Leader-B-为什么要重用-Leader-A-的-QC？"><a href="#问：既然-Leader-A-不可信，Leader-B-为什么要重用-Leader-A-的-QC？" class="headerlink" title="问：既然 Leader A 不可信，Leader B 为什么要重用 Leader A 的 QC？"></a>问：既然 Leader A 不可信，Leader B 为什么要重用 Leader A 的 QC？</h3><p><strong>QC 不是 Leader A “创造” 的——Leader A 只是那个聚合了它的人。</strong></p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">QC2 的诞生:</span><br><span class="line">Leader A: &quot;我提议区块 B2, 请大家投票&quot;</span><br><span class="line">            ↓</span><br><span class="line"><span class="keyword">Replica</span> <span class="number">1</span>: 独立验证 B2 合法 ✅ → BLS.Sign(sk_1, &quot;B2 is valid&quot;)</span><br><span class="line"><span class="keyword">Replica</span> <span class="number">2</span>: 独立验证 B2 合法 ✅ → BLS.Sign(sk_2, &quot;B2 is valid&quot;)</span><br><span class="line"><span class="keyword">Replica</span> <span class="number">3</span>: 独立验证 B2 合法 ✅ → BLS.Sign(sk_3, &quot;B2 is valid&quot;)</span><br><span class="line">            ↓</span><br><span class="line">Leader A:  聚合 σ_1 + σ_2 + σ_3 → QC2</span><br></pre></td></tr></table></figure>
+
+<p>Leader A 不能伪造 QC——没有每个 Replica 的私钥，就无法生成有效的聚合签名。</p>
+<p>Leader B 收到 TC 后，<strong>独立验证</strong> QC2 的 BLS 签名：</p>
+<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Leader <span class="params">B:</span></span><br><span class="line">  → 提取 TC.high_qc <span class="operator">=</span> QC2</span><br><span class="line">  → 用已知的验证者公钥集合验证 QC2 的 BLS 签名</span><br><span class="line">  → ✅ 有效！<span class="operator">&gt;</span><span class="number">2</span><span class="symbol">/3</span> 的诚实验证者确实认可了 B2</span><br><span class="line">  → <span class="string">&quot;好，我接受 B2 的有效性，从 B2 之后继续出块&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>HotStuff 的安全模型从来不是 “信任 Leader”，而是 <strong>“除了 &gt;2&#x2F;3 验证者的集体 BLS 签名以外，什么都不信”</strong>。</p>
+<hr>
+<h2 id="9-业务轨迹"><a href="#9-业务轨迹" class="headerlink" title="9. 业务轨迹"></a>9. 业务轨迹</h2><h4 id="产品三步棋：从永续合约，到无许可上币，到预测市场"><a href="#产品三步棋：从永续合约，到无许可上币，到预测市场" class="headerlink" title="产品三步棋：从永续合约，到无许可上币，到预测市场"></a>产品三步棋：从永续合约，到无许可上币，到预测市场</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2023</span> <span class="string">──</span> <span class="string">Hyperliquid</span> <span class="string">主网上线，永续合约</span> <span class="string">DEX</span> </span><br><span class="line">		<span class="string">靠</span> <span class="string">CEX</span> <span class="string">级体验抢占链上衍生品市场</span> </span><br><span class="line">		</span><br><span class="line"><span class="number">2025.10</span> <span class="string">──</span> <span class="string">HIP-3：无许可部署永续合约</span> </span><br><span class="line">		<span class="string">任何人质押</span> <span class="string">HYPE</span> <span class="string">就能上线任何资产的永续合约</span> <span class="string">上线后贡献平台</span> <span class="number">38</span><span class="string">%</span> <span class="string">交易量</span> </span><br><span class="line">		</span><br><span class="line"><span class="number">2026.02</span> <span class="string">──</span> <span class="string">HIP-4：结果交易（预测市场）</span> </span><br><span class="line">		<span class="string">永续合约、现货、预测市场共享同一保证金账户</span> </span><br><span class="line">		</span><br><span class="line"><span class="number">2026.05</span> <span class="string">主网上线</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="HIP-3-的爆发：SpaceX-与-Pre-IPO-永续合约"><a href="#HIP-3-的爆发：SpaceX-与-Pre-IPO-永续合约" class="headerlink" title="HIP-3 的爆发：SpaceX 与 Pre-IPO 永续合约"></a>HIP-3 的爆发：SpaceX 与 Pre-IPO 永续合约</h4><p>这是 Hyperliquid 业务上最精彩的故事，也是你提到”小于 3%”的来源。</p>
+<h5 id="SpaceX-的故事"><a href="#SpaceX-的故事" class="headerlink" title="SpaceX 的故事"></a>SpaceX 的故事</h5><p>SpaceX 没有上市。普通人没有任何渠道参与 SpaceX 的估值定价。华尔街分析师没有给出目标价，路演不存在，S-1 招股书未公开。</p>
+<p><strong>但 Hyperliquid 上 2026 年 5 月 17 日上线了 SPCX 永续合约。</strong></p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">5</span> 月 <span class="number">17</span> 日（周日），SPCX 上线：</span><br><span class="line">  参考价：~$150（对应约 $1<span class="number">.78</span> 万亿估值）</span><br><span class="line">  数小时内冲至：$216（隐含估值 $2<span class="number">.5</span> 万亿）</span><br><span class="line">  稳定在：~$203（隐含估值 $2<span class="number">.4</span> 万亿）</span><br><span class="line"></span><br><span class="line"><span class="number">5</span> 月 <span class="number">20</span> 日（周三），SpaceX 正式公开 S<span class="number">-1</span> 招股书：</span><br><span class="line">  内部目标估值：$1<span class="number">.75</span> 万亿 – $2 万亿</span><br><span class="line">  </span><br><span class="line">  市场定价 $203 = $2<span class="number">.4</span> 万亿 → 刚好踩在公司内部目标区间的上沿</span><br></pre></td></tr></table></figure>
+
+<p><strong>在华尔街银行家开第一次定价会议之前，在 S-1 公开之前，大众已经给出了一个准确定价。</strong></p>
+<h4 id="小于-3-误差：Cerebras-的故事"><a href="#小于-3-误差：Cerebras-的故事" class="headerlink" title="小于 3% 误差：Cerebras 的故事"></a>小于 3% 误差：Cerebras 的故事</h4><p>这不是 SpaceX，是另一个更精准的案例：</p>
+<figure class="highlight erlang"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Cerebras (AI 芯片公司) IPO：</span><br><span class="line"></span><br><span class="line">  传统一级半市场 (Forge, EquityZen):</span><br><span class="line">    预测误差 ~<span class="number">35</span><span class="comment">%</span></span><br><span class="line"></span><br><span class="line">  Hyperliquid Pre-IPO 永续合约:</span><br><span class="line">    IPO 前预测开盘价：<span class="string">$3</span>40</span><br><span class="line">    实际开盘价：<span class="string">$3</span>50</span><br><span class="line">    误差：~<span class="number">2.9</span><span class="comment">%，不到 3%</span></span><br></pre></td></tr></table></figure>
+
+<p>链上群体智慧，在信息不透明、无分析师覆盖的情况下，跑赢了专业一级半市场平台。</p>
+<p>Hyperliquid SPCX（纯合成永续合约）: 没有股票、没有券商、没有实物资产主张 纯粹是对一个价格行情的赌注，用 USDC 结算 问题：SpaceX 想阻止？没有法人实体可以送达法律文书 没有中央发行方可以施压 代码已经上链，不可篡改</p>
+<p>Hyperliquid 原油永续合约： 24&#x2F;7&#x2F;365 交易 周末跑出 $7.2 亿交易量 → CME 急了。CME 和 ICE（洲际交易所）已向 CFTC 和国会施压要求打击 Hyperliquid——不是因为它技术上不安全，而是因为它<strong>打破了时间的垄断</strong>。当 CME 的原油市场休市时，Hyperliquid 正在交易。这就是为什么两家做市商在 2026 年 5 月撤走了 $1 亿流动性来回应监管压力。</p>
+<p>Hyperliquid HIP-4： 你的 BTC 永续多头 + 你的 “BTC 本周是否破 8 万” 预测合约 &#x3D; 共享同一个保证金账户 &#x3D; 系统自动计算净风险，释放多余保证金 &#x3D; 组合保证金效率比跨保证金模式高 30%+</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>Post author:  </strong>Zhuang Wei Ming
+  </li>
+  <li class="post-copyright-link">
+      <strong>Post link: </strong>
+      <a href="https://zhuang-weiming.github.io/2026/08/02/%E6%B7%B1%E5%85%A5Hyperliquid/" title="深入Hyperliquid">https://zhuang-weiming.github.io/2026/08/02/深入Hyperliquid/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="../../../../tags/Algorithm/" rel="tag"># Algorithm</a>
+              <a href="../../../../tags/Blockchain/" rel="tag"># Blockchain</a>
+              <a href="../../../../tags/Blockchain-Consensus/" rel="tag"># Blockchain-Consensus</a>
+              <a href="../../../../tags/Finance/" rel="tag"># Finance</a>
+              <a href="../../../../tags/Finance-Banking/" rel="tag"># Finance-Banking</a>
+              <a href="../../../../tags/Finance-CryptoAsset/" rel="tag"># Finance-CryptoAsset</a>
+              <a href="../../../../tags/Finance-WealthManagement/" rel="tag"># Finance-WealthManagement</a>
+              <a href="../../../../tags/Finance-QuantTrading/" rel="tag"># Finance-QuantTrading</a>
+              <a href="../../../../tags/Blockchain-EVM/" rel="tag"># Blockchain-EVM</a>
+              <a href="../../../../tags/Algorithm-trading/" rel="tag"># Algorithm-trading</a>
+              <a href="../../../../tags/Fintech/" rel="tag"># Fintech</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="../../../07/13/WIF%20v5.9%20%E8%B4%A2%E5%AF%8C%E6%8A%95%E8%B5%84%E6%A1%86%E6%9E%B6%E5%85%A8%E9%9D%A2%E8%AF%84%E4%BC%B0%E6%8A%A5%E5%91%8A/" rel="prev" title="体验Vibe-Trading">
+                  <i class="fa fa-angle-left"></i> 体验Vibe-Trading
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments utterances-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 2010 – 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Zhuang Wei Ming</span>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+<script class="next-config" data-name="utterances" type="application/json">{"enable":true,"repo":"zhuang-weiming/zhuang-weiming.github.io","issue_term":"pathname","theme":"github-light"}</script>
+<script src="../../../../js/third-party/comments/utterances.js" defer></script>
+
+</body>
+</html>
